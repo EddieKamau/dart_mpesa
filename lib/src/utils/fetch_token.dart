@@ -29,7 +29,7 @@ Future<Map<String, dynamic>> fetchMpesaToken(String username, String password, {
 
   try{
     String _url = applicationMode == ApplicationMode.production ? mpesaTokenUrl : mpesaTokenUrlTest;
-    final http.Response _res = await http.get(Uri.parse(mpesaTokenUrl),headers: <String, String>{'authorization': basicAuth});
+    final http.Response _res = await http.get(Uri.parse(_url),headers: <String, String>{'authorization': basicAuth});
     if(_res.statusCode == 200){
       final _body = json.decode(_res.body);
 
@@ -51,15 +51,28 @@ Future<Map<String, dynamic>> fetchMpesaToken(String username, String password, {
         'token': _body['access_token'].toString()
         };
     } else {
-      return {
-        'status': 1,
-        'errorMessage': json.decode(_res.body)
-      };
+      throw FetchTokenError(_res.body);
+      // return {
+      //   'status': 1,
+      //   'errorMessage': json.decode(_res.body)
+      // };
     }
   }catch (e){
-    return {
-        'status': 101,
-        'errorMessage': 'cannot reach mpesa daraja endpoint'
-      };
+    throw FetchTokenError(e.toString());
+    // return {
+    //     'status': 101,
+    //     'errorMessage': 'cannot reach mpesa daraja endpoint'
+    //   };
+  }
+}
+
+class FetchTokenError extends Error {
+  final String? message;
+  FetchTokenError([this.message]);
+  String toString() {
+    var message = this.message;
+    return (message != null)
+        ? "Token Error: $message"
+        : "Token Error";
   }
 }

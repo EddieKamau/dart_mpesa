@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
 import 'package:http/http.dart' as http;
-Future<MpesaResponse> pesalinkProcessTransaction(
+Future<MpesaResponse> processMpesaTransaction(
   String url, Map<String, String> headers, Map<String, dynamic> payload
 )async{
 
