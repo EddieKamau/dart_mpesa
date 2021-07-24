@@ -7,3 +7,7 @@ library dart_mpesa;
 class Mpesa {
   
 }
+
+enum ApplicationMode{
+  test, production
+}

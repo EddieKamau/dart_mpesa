@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:dart_mpesa/dart_mpesa.dart';
 import 'package:dart_mpesa/src/utils/urls.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_mpesa/src/utils/mpesa_token_model.dart';
 
-Future<Map<String, dynamic>> fetchMpesaToken(String username, String password, {bool stk = false, bool live = true})async{
+Future<Map<String, dynamic>> fetchMpesaToken(String username, String password, {bool stk = false, ApplicationMode applicationMode = ApplicationMode.production})async{
 
   final MpesaTokenModel _mpesaTokenModel = MpesaTokenModel();
   // models
@@ -27,7 +28,7 @@ Future<Map<String, dynamic>> fetchMpesaToken(String username, String password, {
 
 
   try{
-    String _url = live ? mpesaTokenUrl : mpesaTokenUrlTest;
+    String _url = applicationMode == ApplicationMode.production ? mpesaTokenUrl : mpesaTokenUrlTest;
     final http.Response _res = await http.get(Uri.parse(mpesaTokenUrl),headers: <String, String>{'authorization': basicAuth});
     if(_res.statusCode == 200){
       final _body = json.decode(_res.body);
