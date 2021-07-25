@@ -3,7 +3,6 @@ import 'package:dart_mpesa/dart_mpesa.dart';
 class MpesaReversal implements MpesaService {
   MpesaReversal(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.transactionID,
       required this.amount,
@@ -15,8 +14,7 @@ class MpesaReversal implements MpesaService {
   );
   @override
   Mpesa mpesa;
-
-  ApplicationMode applicationMode;
+  
 
   /// The amount of money being sent to the customer.
   double amount;
@@ -48,7 +46,7 @@ class MpesaReversal implements MpesaService {
     "Occassion": occassion
   };
 
-  String get url => applicationMode == ApplicationMode.production ? mpesaReversalUrL : mpesaReversalUrLTest;
+  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaReversalUrL : mpesaReversalUrLTest;
 
   @override
   Future<MpesaResponse> process() async{

@@ -3,15 +3,13 @@ import 'package:dart_mpesa/dart_mpesa.dart';
 class MpesaStkPushQuery implements MpesaService {
   MpesaStkPushQuery(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.checkoutRequestID,
     }
   );
   @override
   Mpesa mpesa;
-
-  ApplicationMode applicationMode;
+  
 
   /// This is a global unique identifier of the processed checkout transaction request.
   String checkoutRequestID;
@@ -24,7 +22,7 @@ class MpesaStkPushQuery implements MpesaService {
     "CheckoutRequestID": checkoutRequestID,
   };
 
-  String get url => applicationMode == ApplicationMode.production ? mpesaStkpushQueryUrL : mpesaStkpushQueryUrLTest;
+  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaStkpushQueryUrL : mpesaStkpushQueryUrLTest;
 
   @override
   Future<MpesaResponse> process() async{

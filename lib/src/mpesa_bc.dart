@@ -4,7 +4,6 @@ import 'package:enum_object/enum_object.dart';
 class MpesaB2c implements MpesaService {
   MpesaB2c(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.phoneNumber,
       required this.amount,
@@ -17,8 +16,6 @@ class MpesaB2c implements MpesaService {
   );
   @override
   Mpesa mpesa;
-
-  ApplicationMode applicationMode;
 
   /// The amount of money being sent to the customer.
   double amount;
@@ -52,7 +49,7 @@ class MpesaB2c implements MpesaService {
     "Occassion": occassion
   };
 
-  String get url => applicationMode == ApplicationMode.production ? mpesaBcUrL : mpesaBcUrLTest;
+  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaBcUrL : mpesaBcUrLTest;
 
   @override
   Future<MpesaResponse> process() async{

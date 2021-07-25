@@ -67,7 +67,7 @@ class Mpesa {
     BcCommandId commandID = BcCommandId.BusinessPayment,
   }){
     var _bc = MpesaB2c(
-      this, applicationMode, 
+      this, 
       phoneNumber: phoneNumber, amount: amount, remarks: remarks, occassion: occassion,
       queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, commandID: commandID
     );
@@ -82,7 +82,7 @@ class Mpesa {
     required BbCommandId commandID,
   }){
     var _bb = MpesaB2B(
-      this, applicationMode, 
+      this, 
       shortCode: shortCode, identifierType: identifierType, amount: amount, remarks: remarks, 
       accountReference: accountReference, queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, commandID: commandID
     );
@@ -97,7 +97,7 @@ class Mpesa {
     required String accountReference, required String queueTimeOutURL, required String resultURL,
   }){
     var _bc = MpesaB2B.paybill(
-      this, applicationMode, 
+      this, 
       shortCode: shortCode, amount: amount, remarks: remarks, accountReference: accountReference,
       queueTimeOutURL: queueTimeOutURL, resultURL: resultURL,
     );
@@ -112,7 +112,7 @@ class Mpesa {
     required String queueTimeOutURL, required String resultURL,
   }){
     var _bc = MpesaB2B.buyGoods(
-      this, applicationMode, 
+      this, 
       shortCode: shortCode, amount: amount, remarks: remarks,
       queueTimeOutURL: queueTimeOutURL, resultURL: resultURL,
     );
@@ -126,7 +126,7 @@ class Mpesa {
     required String occassion, required String queueTimeOutURL, required String resultURL,
   }){
     var _revers = MpesaReversal(
-      this, applicationMode, 
+      this, 
       transactionID: transactionID, amount: amount, remarks: remarks, occassion: occassion,
       queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, 
     );
@@ -140,7 +140,7 @@ class Mpesa {
     required String occassion, required String queueTimeOutURL, required String resultURL,
   }){
     var _status = MpesaTransactionStatus(
-      this, applicationMode, 
+      this, 
       transactionID: transactionID, identifierType: identifierType, remarks: remarks, occassion: occassion,
       queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, 
     );
@@ -156,7 +156,7 @@ class Mpesa {
     required String transactionDesc, required String callBackURL,
   }){
     var _res = MpesaLipanaMpesa(
-      this, applicationMode, 
+      this, 
       phoneNumber: phoneNumber, amount: amount, accountReference: accountReference, transactionDesc: transactionDesc,
       callBackURL: callBackURL
     );
@@ -170,7 +170,7 @@ class Mpesa {
     required String checkoutRequestID, 
   }){
     var _res = MpesaStkPushQuery(
-      this, applicationMode, 
+      this, 
       checkoutRequestID: checkoutRequestID,
     );
 

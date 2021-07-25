@@ -5,7 +5,6 @@ class MpesaB2B implements MpesaService {
     
   MpesaB2B(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.shortCode,
       required this.identifierType,
@@ -21,7 +20,6 @@ class MpesaB2B implements MpesaService {
 
   MpesaB2B.paybill(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.shortCode,
       required this.amount,
@@ -37,7 +35,6 @@ class MpesaB2B implements MpesaService {
 
   MpesaB2B.buyGoods(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.shortCode,
       required this.amount,
@@ -54,9 +51,6 @@ class MpesaB2B implements MpesaService {
 
   @override
   Mpesa mpesa;
-
-  ApplicationMode applicationMode;
-
 
   /// The amount of money being sent to the customer. 
   double amount;
@@ -94,7 +88,7 @@ class MpesaB2B implements MpesaService {
     "ResultURL": resultURL,  
   };
 
-  String get url => applicationMode == ApplicationMode.production ? mpesaBbUrL : mpesaBbUrLTest;
+  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaBbUrL : mpesaBbUrLTest;
 
   @override
   Future<MpesaResponse> process() async{

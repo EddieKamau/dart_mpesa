@@ -3,7 +3,6 @@ import 'package:dart_mpesa/dart_mpesa.dart';
 class MpesaLipanaMpesa implements MpesaService {
   MpesaLipanaMpesa(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.phoneNumber,
       required this.amount,
@@ -14,8 +13,7 @@ class MpesaLipanaMpesa implements MpesaService {
   );
   @override
   Mpesa mpesa;
-
-  ApplicationMode applicationMode;
+  
 
   /// The amount of money being sent to the customer.
   double amount;
@@ -45,7 +43,7 @@ class MpesaLipanaMpesa implements MpesaService {
     "TransactionDesc": transactionDesc
   };
 
-  String get url => applicationMode == ApplicationMode.production ? mpesaLipanaMpesaOnlineUrL : mpesaLipanaMpesaOnlineUrLTest;
+  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaLipanaMpesaOnlineUrL : mpesaLipanaMpesaOnlineUrLTest;
 
   @override
   Future<MpesaResponse> process() async{

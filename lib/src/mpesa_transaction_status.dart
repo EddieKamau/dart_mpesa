@@ -3,7 +3,6 @@ import 'package:dart_mpesa/dart_mpesa.dart';
 class MpesaTransactionStatus implements MpesaService {
   MpesaTransactionStatus(
     this.mpesa, 
-    this.applicationMode,
     {
       required this.transactionID,
       required this.identifierType,
@@ -15,8 +14,7 @@ class MpesaTransactionStatus implements MpesaService {
   );
   @override
   Mpesa mpesa;
-
-  ApplicationMode applicationMode;
+  
 
   /// Type of organization receiving the transaction
   IdentifierType identifierType;
@@ -47,7 +45,7 @@ class MpesaTransactionStatus implements MpesaService {
     "Occassion": occassion
   };
 
-  String get url => applicationMode == ApplicationMode.production ? mpesaReversalUrL : mpesaReversalUrLTest;
+  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaReversalUrL : mpesaReversalUrLTest;
 
   @override
   Future<MpesaResponse> process() async{
