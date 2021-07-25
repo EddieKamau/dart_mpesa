@@ -5,6 +5,7 @@ library dart_mpesa;
 
 import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
+import 'package:dart_mpesa/src/mpesa_reversal.dart';
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
 
 
@@ -97,6 +98,20 @@ class Mpesa {
     );
 
     return _bc.process();
+  }
+
+    // reversl
+  Future<MpesaResponse> reversalTransaction({
+    required String transactionID, required double amount, required String remarks,
+    required String occassion, required String queueTimeOutURL, required String resultURL,
+  }){
+    var _revers = MpesaReversal(
+      this, applicationMode, 
+      transactionID: transactionID, amount: amount, remarks: remarks, occassion: occassion,
+      queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, 
+    );
+
+    return _revers.process();
   }
 
 
