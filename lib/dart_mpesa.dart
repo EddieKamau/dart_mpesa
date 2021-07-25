@@ -7,6 +7,7 @@ import 'dart:convert';
 
 import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
+import 'package:dart_mpesa/src/mpesa_cb.dart';
 import 'package:dart_mpesa/src/mpesa_lipanampesa.dart';
 import 'package:dart_mpesa/src/mpesa_reversal.dart';
 import 'package:dart_mpesa/src/mpesa_stkpush_query.dart';
@@ -171,6 +172,23 @@ class Mpesa {
     var _res = MpesaStkPushQuery(
       this, applicationMode, 
       checkoutRequestID: checkoutRequestID,
+    );
+
+    return _res.process();
+  }
+
+
+  // c2b simulation
+  Future<MpesaResponse> c2bOnlineSimulation({
+    required String phoneNumber, required double amount, 
+    String? billRefNumber, CbCommandID commandID = CbCommandID.CustomerPayBillOnline, 
+  }){
+    var _res = MpesaC2BSimulation(
+      this, 
+      phoneNumber: phoneNumber,
+      amount: amount,
+      billRefNumber: billRefNumber,
+      commandID: commandID,
     );
 
     return _res.process();

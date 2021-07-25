@@ -4,9 +4,9 @@ const String mpesaTokenUrlTest = 'https://sandbox.safaricom.co.ke/oauth/v1/gener
 
 const String mpesaAccountBalanceUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
 
-const String mpesaCbUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+const String mpesaLipanaMpesaOnlineUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
-const String mpesaLipanaMpesaOnlineUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+const String mpesacbSimulationUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
 
 const String mpesaCbRegisterUrlUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
 
@@ -25,9 +25,9 @@ const String mpesaTokenUrl = 'https://api.safaricom.co.ke/oauth/v1/generate?gran
 
 const String mpesaAccountBalanceUrL = 'https://api.safaricom.co.ke/mpesa/accountbalance/v1/query';
 
-const String mpesaCbUrL = 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+const String mpesaLipanaMpesaOnlineUrL = 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
-const String mpesaLipanaMpesaOnlineUrL = 'https://api.safaricom.co.ke/mpesa/c2b/v1/simulate';
+// const String mpesacbSimulationUrL = 'https://api.safaricom.co.ke/mpesa/c2b/v1/simulate';
 
 const String mpesaCbRegisterUrlUrL = 'https://api.safaricom.co.ke/mpesa/c2b/v1/registerurl';
 
