@@ -3,6 +3,7 @@
 /// More dartdocs go here.
 library dart_mpesa;
 
+import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
 
@@ -37,30 +38,70 @@ class Mpesa {
   
   String? passKey;
 
+
+  // b2c
   Future<MpesaResponse> b2cTransaction({
-    required String phoneNumber,
-    required double amount,
-    required String remarks,
-    required String occassion,
-    required String queueTimeOutURL,
-    required String resultURL,
+    required String phoneNumber, required double amount, required String remarks,
+    required String occassion, required String queueTimeOutURL, required String resultURL,
     BcCommandId commandID = BcCommandId.BusinessPayment,
   }){
-
     var _bc = MpesaB2c(
       this, applicationMode, 
-      phoneNumber: phoneNumber,
-      amount: amount,
-      remarks: remarks,
-      occassion: occassion,
-      queueTimeOutURL: queueTimeOutURL,
-      resultURL: resultURL,
-      commandID: commandID
+      phoneNumber: phoneNumber, amount: amount, remarks: remarks, occassion: occassion,
+      queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, commandID: commandID
     );
 
     return _bc.process();
-
   }
+
+  // b2b
+  Future<MpesaResponse> b2bTransaction({
+    required String shortCode, required double amount, required String remarks,
+    String? accountReference, required String queueTimeOutURL, required String resultURL,
+    required BbCommandId commandID,
+  }){
+    var _bb = MpesaB2B(
+      this, applicationMode, 
+      shortCode: shortCode, amount: amount, remarks: remarks, accountReference: accountReference,
+      queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, commandID: commandID
+    );
+
+    return _bb.process();
+  }
+
+
+  // b2b paybill
+  Future<MpesaResponse> b2bPaybillTransaction({
+    required String shortCode, required double amount, required String remarks,
+    required String accountReference, required String queueTimeOutURL, required String resultURL,
+  }){
+    var _bc = MpesaB2B.paybill(
+      this, applicationMode, 
+      shortCode: shortCode, amount: amount, remarks: remarks, accountReference: accountReference,
+      queueTimeOutURL: queueTimeOutURL, resultURL: resultURL,
+    );
+
+    return _bc.process();
+  }
+
+
+  // b2b buyGoods
+  Future<MpesaResponse> b2bBuyGoodsTransaction({
+    required String shortCode, required double amount, required String remarks,
+    required String queueTimeOutURL, required String resultURL,
+  }){
+    var _bc = MpesaB2B.buyGoods(
+      this, applicationMode, 
+      shortCode: shortCode, amount: amount, remarks: remarks,
+      queueTimeOutURL: queueTimeOutURL, resultURL: resultURL,
+    );
+
+    return _bc.process();
+  }
+
+
+  
+  
   
 }
 
