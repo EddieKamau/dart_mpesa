@@ -6,7 +6,7 @@ const String mpesaAccountBalanceUrLTest = 'https://sandbox.safaricom.co.ke/mpesa
 
 const String mpesaCbUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
-const String mpesaCbOnlineSimulationUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+const String mpesaLipanaMpesaOnlineUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
 
 const String mpesaCbRegisterUrlUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
 
@@ -27,7 +27,7 @@ const String mpesaAccountBalanceUrL = 'https://api.safaricom.co.ke/mpesa/account
 
 const String mpesaCbUrL = 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
-const String mpesaCbOnlineSimulationUrL = 'https://api.safaricom.co.ke/mpesa/c2b/v1/simulate';
+const String mpesaLipanaMpesaOnlineUrL = 'https://api.safaricom.co.ke/mpesa/c2b/v1/simulate';
 
 const String mpesaCbRegisterUrlUrL = 'https://api.safaricom.co.ke/mpesa/c2b/v1/registerurl';
 

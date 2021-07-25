@@ -3,8 +3,11 @@
 /// More dartdocs go here.
 library dart_mpesa;
 
+import 'dart:convert';
+
 import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
+import 'package:dart_mpesa/src/mpesa_lipanampesa.dart';
 import 'package:dart_mpesa/src/mpesa_reversal.dart';
 import 'package:dart_mpesa/src/mpesa_transaction_status.dart';
 import 'package:dart_mpesa/src/utils/identifierType_enum.dart';
@@ -43,6 +46,16 @@ class Mpesa {
   String? securityCredential;
   
   String? passKey;
+
+  String get password{
+    final String _codeKeyDt = shortCode + passKey! + timestamp;
+    final List<int> _bytes = utf8.encode(_codeKeyDt);
+    return base64.encode(_bytes);
+  }
+  String get timestamp{
+    final DateTime _now = DateTime.now();
+    return _now.year.toString() + _now.month.toString().padLeft(2, '0') + _now.day.toString().padLeft(2, '0') + _now.hour.toString().padLeft(2, '0') + _now.minute.toString().padLeft(2, '0') + _now.second.toString().padLeft(2, '0');
+  }
 
 
   // b2c
@@ -131,6 +144,22 @@ class Mpesa {
     );
 
     return _status.process();
+  }
+
+
+  
+  // transaction status
+  Future<MpesaResponse> lipanaMpesaOnline({
+    required String phoneNumber, required double amount, required String accountReference,
+    required String transactionDesc, required String callBackURL,
+  }){
+    var _res = MpesaLipanaMpesa(
+      this, applicationMode, 
+      phoneNumber: phoneNumber, amount: amount, accountReference: accountReference, transactionDesc: transactionDesc,
+      callBackURL: callBackURL
+    );
+
+    return _res.process();
   }
 
 
