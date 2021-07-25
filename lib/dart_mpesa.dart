@@ -9,6 +9,7 @@ import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
 import 'package:dart_mpesa/src/mpesa_lipanampesa.dart';
 import 'package:dart_mpesa/src/mpesa_reversal.dart';
+import 'package:dart_mpesa/src/mpesa_stkpush_query.dart';
 import 'package:dart_mpesa/src/mpesa_transaction_status.dart';
 import 'package:dart_mpesa/src/utils/identifierType_enum.dart';
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
@@ -148,7 +149,7 @@ class Mpesa {
 
 
   
-  // transaction status
+  // lipana mpesa online
   Future<MpesaResponse> lipanaMpesaOnline({
     required String phoneNumber, required double amount, required String accountReference,
     required String transactionDesc, required String callBackURL,
@@ -157,6 +158,19 @@ class Mpesa {
       this, applicationMode, 
       phoneNumber: phoneNumber, amount: amount, accountReference: accountReference, transactionDesc: transactionDesc,
       callBackURL: callBackURL
+    );
+
+    return _res.process();
+  }
+
+
+  // stk push query
+  Future<MpesaResponse> stkPushQuery({
+    required String checkoutRequestID, 
+  }){
+    var _res = MpesaStkPushQuery(
+      this, applicationMode, 
+      checkoutRequestID: checkoutRequestID,
     );
 
     return _res.process();

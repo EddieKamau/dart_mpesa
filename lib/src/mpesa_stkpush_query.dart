@@ -1,0 +1,47 @@
+import 'package:dart_mpesa/dart_mpesa.dart';
+
+class MpesaStkPushQuery implements MpesaService {
+  MpesaStkPushQuery(
+    this.mpesa, 
+    this.applicationMode,
+    {
+      required this.checkoutRequestID,
+    }
+  );
+  @override
+  Mpesa mpesa;
+
+  ApplicationMode applicationMode;
+
+  /// This is a global unique identifier of the processed checkout transaction request.
+  String checkoutRequestID;
+
+
+  Map<String, dynamic> get payload => {
+    "BusinessShortCode": mpesa.shortCode,    
+    "Password": mpesa.password, 
+    "Timestamp": mpesa.timestamp, 
+    "CheckoutRequestID": checkoutRequestID,
+  };
+
+  String get url => applicationMode == ApplicationMode.production ? mpesaStkpushQueryUrL : mpesaStkpushQueryUrLTest;
+
+  @override
+  Future<MpesaResponse> process() async{
+    late Map<String, dynamic> _tokenRes;
+    try {
+      _tokenRes = await fetchMpesaToken(mpesa.consumerKey, mpesa.consumerSecret, applicationMode: mpesa.applicationMode);
+
+    } catch (e) {
+      rethrow;
+    }
+
+    Map<String, String> headers = {
+      'content-type': 'application/json',
+      'Authorization': 'Bearer ${_tokenRes["token"]}'
+    };
+
+    return await processMpesaTransaction(url, headers, payload);
+  }
+  
+}
