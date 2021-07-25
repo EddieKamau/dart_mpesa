@@ -6,6 +6,8 @@ library dart_mpesa;
 import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
 import 'package:dart_mpesa/src/mpesa_reversal.dart';
+import 'package:dart_mpesa/src/mpesa_transaction_status.dart';
+import 'package:dart_mpesa/src/utils/identifierType_enum.dart';
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
 
 
@@ -14,6 +16,7 @@ export 'package:dart_mpesa/src/mpesa_service_shell.dart';
 export 'package:dart_mpesa/src/utils/urls.dart';
 export 'package:dart_mpesa/src/utils/fetch_token.dart';
 export 'package:dart_mpesa/src/utils/process_mpesa_post_transaction.dart';
+export 'package:dart_mpesa/src/utils/identifierType_enum.dart';
 
 
 class Mpesa {
@@ -100,7 +103,7 @@ class Mpesa {
     return _bc.process();
   }
 
-    // reversl
+  // reversal
   Future<MpesaResponse> reversalTransaction({
     required String transactionID, required double amount, required String remarks,
     required String occassion, required String queueTimeOutURL, required String resultURL,
@@ -112,6 +115,20 @@ class Mpesa {
     );
 
     return _revers.process();
+  }
+
+  // transaction status
+  Future<MpesaResponse> transactionStatus({
+    required String transactionID, required IdentifierType identifierType, required String remarks,
+    required String occassion, required String queueTimeOutURL, required String resultURL,
+  }){
+    var _status = MpesaTransactionStatus(
+      this, applicationMode, 
+      transactionID: transactionID, identifierType: identifierType, remarks: remarks, occassion: occassion,
+      queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, 
+    );
+
+    return _status.process();
   }
 
 
