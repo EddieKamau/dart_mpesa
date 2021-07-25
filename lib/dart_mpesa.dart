@@ -34,6 +34,8 @@ class Mpesa {
   String shortCode;
   String consumerSecret;
   String consumerKey;
+  /// Type of organization
+  IdentifierType identifierType = IdentifierType.OrganizationShortCode;
 
   /// This is an API user created by the Business Administrator of the M-PESA Bulk disbursement account that is active and authorized to initiate B2C transactions via API.
   String? initiatorName;
@@ -60,14 +62,14 @@ class Mpesa {
 
   // b2b
   Future<MpesaResponse> b2bTransaction({
-    required String shortCode, required double amount, required String remarks,
+    required String shortCode, required IdentifierType identifierType, required double amount, required String remarks,
     String? accountReference, required String queueTimeOutURL, required String resultURL,
     required BbCommandId commandID,
   }){
     var _bb = MpesaB2B(
       this, applicationMode, 
-      shortCode: shortCode, amount: amount, remarks: remarks, accountReference: accountReference,
-      queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, commandID: commandID
+      shortCode: shortCode, identifierType: identifierType, amount: amount, remarks: remarks, 
+      accountReference: accountReference, queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, commandID: commandID
     );
 
     return _bb.process();

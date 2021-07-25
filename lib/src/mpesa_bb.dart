@@ -8,6 +8,7 @@ class MpesaB2B implements MpesaService {
     this.applicationMode,
     {
       required this.shortCode,
+      required this.identifierType,
       required this.amount,
       required this.remarks,
       required this.commandID,
@@ -29,7 +30,10 @@ class MpesaB2B implements MpesaService {
       required this.queueTimeOutURL,
       required this.resultURL,
     }
-  ){commandID = BbCommandId.BusinessPayBill;}
+  ){
+    commandID = BbCommandId.BusinessPayBill;
+    identifierType = IdentifierType.OrganizationShortCode;
+  }
 
   MpesaB2B.buyGoods(
     this.mpesa, 
@@ -41,7 +45,10 @@ class MpesaB2B implements MpesaService {
       required this.queueTimeOutURL,
       required this.resultURL,
     }
-  ){commandID = BbCommandId.BusinessBuyGoods;}
+  ){
+    commandID = BbCommandId.BusinessBuyGoods;
+    identifierType = IdentifierType.TillNumber;
+  }
 
 
 
@@ -51,10 +58,12 @@ class MpesaB2B implements MpesaService {
   ApplicationMode applicationMode;
 
 
-  /// The amount of money being sent to the customer.
+  /// The amount of money being sent to the customer. 
   double amount;
   /// This is the customer business number to receive the amount.
   String shortCode;
+  /// Type of organization receiving the transaction
+  IdentifierType identifierType = IdentifierType.OrganizationShortCode;
   /// Any additional information to be associated with the transaction.
   /// Sentence of up to 100 characters
   String remarks;
@@ -74,8 +83,8 @@ class MpesaB2B implements MpesaService {
     "InitiatorName": mpesa.initiatorName,    
     "SecurityCredential": mpesa.securityCredential, 
     "CommandID": commandID.enumValue, 
-    // "SenderIdentifierType": "4",
-    // "RecieverIdentifierType": "4",   
+    "SenderIdentifierType": "${mpesa.identifierType.value}",
+    "RecieverIdentifierType": "${identifierType.value}",   
     "Amount": amount,    
     "PartyA": mpesa.shortCode,    
     "PartyB": shortCode,   
