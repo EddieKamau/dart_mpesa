@@ -149,7 +149,7 @@ Map<String, dynamic> b2cError = {
 };
 
 // accept
-Map<String, dynamic> b2cSuccessAccept = {    
+Map<String, dynamic> default1 = {    
  "ConversationID": "AG_20191219_00005797af5d7d75f652",    
  "OriginatorConversationID": "16740-34861180-1",    
  "ResponseCode": "0",    
@@ -306,4 +306,16 @@ Map<String, dynamic> stkQuer = {
   "CheckoutRequestID":"ws_CO_13012021093521236557",
   "ResultCode": "0",
   "ResultDesc":"The service request is processed successfully."
+};
+
+Map<String, dynamic> b2bReceiverError (int value) => {    
+   "requestId": "11728-2929992-1",
+   "errorCode": "401.002.01",
+   "errorMessage": "The element The value of Request.Identity.ReceiverParty.IdentifierType can not be $value is invalid."
+};
+
+Map<String, dynamic> b2bPrimaryError (int value) =>{    
+   "requestId": "11728-2929992-1",
+   "errorCode": "401.002.01",
+   "errorMessage": "The element The value of Request.Identity.PrimaryParty.IdentifierType can not be $value is invalid."
 };
