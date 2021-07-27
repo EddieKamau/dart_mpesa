@@ -77,4 +77,14 @@ The Business to Business (B2B) API is used to transfer money from one business t
   );
 ```
 
+### fetch token
+```dart
+  try{
+    _res = await mpesa.fetchToken;
+    print(_res['token'])
+  }catch(e){
+    print(e)
+  }
+```
+
 See examples or docs for more

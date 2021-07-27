@@ -13,6 +13,7 @@ import 'package:dart_mpesa/src/mpesa_lipanampesa.dart';
 import 'package:dart_mpesa/src/mpesa_reversal.dart';
 import 'package:dart_mpesa/src/mpesa_stkpush_query.dart';
 import 'package:dart_mpesa/src/mpesa_transaction_status.dart';
+import 'package:dart_mpesa/src/utils/fetch_token.dart';
 import 'package:dart_mpesa/src/utils/identifierType_enum.dart';
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
 
@@ -273,8 +274,9 @@ class Mpesa {
     return _res.process();
   }
 
+  // fetch token
+  Future<Map<String, dynamic>> get fetchToken => fetchMpesaToken(consumerKey, consumerSecret, applicationMode: applicationMode);
 
-  
   
   
 }
