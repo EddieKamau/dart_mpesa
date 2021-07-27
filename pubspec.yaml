@@ -6,10 +6,9 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  hive: ^2.0.4
   http: ^0.13.3
   enum_object: ^0.0.2
-#   path: ^1.8.0
+  
 dev_dependencies:
   hive_generator: ^1.1.0
   build_runner: ^2.0.6
