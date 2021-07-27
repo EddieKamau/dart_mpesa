@@ -1,5 +1,6 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
 
+/// Enquire the balance on an M-Pesa BuyGoods (Till Number)
 class MpesaAccountBalance implements MpesaService {
     
   MpesaAccountBalance(

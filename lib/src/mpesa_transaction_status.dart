@@ -1,5 +1,6 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
 
+/// Check the status of a transaction
 class MpesaTransactionStatus implements MpesaService {
   MpesaTransactionStatus(
     this.mpesa, 

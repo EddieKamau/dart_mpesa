@@ -1,6 +1,8 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
 import 'package:enum_object/enum_object.dart';
 
+/// The Business to Business (B2B) API is used to transfer money from one business to another business. 
+/// This API enables the business to pay other businesses. 
 class MpesaB2B implements MpesaService {
     
   MpesaB2B(
@@ -68,8 +70,12 @@ class MpesaB2B implements MpesaService {
   String queueTimeOutURL;
   /// This is the URL to be specified in your request that will be used by M-PESA to send notification upon processing of the payment request.
   String resultURL;
-  /// This is a unique command that specifies B2C transaction type.
-  /// SalaryPayment: This supports sending money to both registered and unregistered M-Pesa customers.
+  /// This is a unique command that specifies B2B transaction type.
+  /// Business Pay Bill: This is a transfer of funds from one Organization's Working Account to another Organization's Utility Account.
+  /// Business Buy Goods: A transfer of funds from one Organization's Working Account to another Organization's Merchant Account.
+  /// Disburse Funds To Business: A transfer of funds from one Organization's Utility Account to another Organization's Working Account.
+  /// Business To Business Transfer: A transfer of funds from one Organization's Working Account to another Organization's Working Account.
+  /// Merchant To Merchant Transfer: A transfer of funds from one Organization's Merchant Account to another Organization's Merchant Account.
   BbCommandId commandID = BbCommandId.BusinessToBusinessTransfer;
 
 
@@ -110,7 +116,16 @@ class MpesaB2B implements MpesaService {
   
 }
 
+
+/// [BbCommandId.BusinessPayBill] This is a transfer of funds from one Organization's Working Account to another Organization's Utility Account.
+/// [BbCommandId.BusinessBuyGoods] A transfer of funds from one Organization's Working Account to another Organization's Merchant Account.
+/// [BbCommandId.DisburseFundsToBusiness]  A transfer of funds from one Organization's Utility Account to another Organization's Working Account.
+/// [BbCommandId.BusinessToBusinessTransfer] A transfer of funds from one Organization's Working Account to another Organization's Working Account.
+/// [BbCommandId.MerchantToMerchantTransfer] A transfer of funds from one Organization's Merchant Account to another Organization's Merchant Account.
 enum BbCommandId{
-  BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, 
-  BusinessToBusinessTransfer, MerchantToMerchantTransfer
+  BusinessPayBill, 
+  BusinessBuyGoods, 
+  DisburseFundsToBusiness, 
+  BusinessToBusinessTransfer, 
+  MerchantToMerchantTransfer
 }

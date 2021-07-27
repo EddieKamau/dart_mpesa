@@ -1,5 +1,6 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
 
+/// Use this API to check the status of a Lipa Na M-Pesa Online Payment.
 class MpesaStkPushQuery implements MpesaService {
   MpesaStkPushQuery(
     this.mpesa, 

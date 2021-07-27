@@ -1,5 +1,6 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
 
+/// LIPA NA M-PESA ONLINE API also know as M-PESA express (STK Push) is a Merchant/Business initiated C2B (Customer to Business) Payment.
 class MpesaLipanaMpesa implements MpesaService {
   MpesaLipanaMpesa(
     this.mpesa, 

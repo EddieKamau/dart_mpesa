@@ -77,4 +77,4 @@ The Business to Business (B2B) API is used to transfer money from one business t
   );
 ```
 
-See examples for more
+See examples or docs for more
