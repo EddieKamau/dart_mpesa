@@ -2,17 +2,17 @@ import 'package:dart_mpesa/dart_mpesa.dart';
 import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
 
-void main() async{
+void main() async {
   var mpesa = Mpesa(
-    shortCode: "",
-    consumerKey: "",
-    consumerSecret: "",
-    initiatorName: "",
-    securityCredential: "",
-    passKey: "",
-    identifierType: IdentifierType.OrganizationShortCode, // Type of organization, options, OrganizationShortCode, TillNumber, OrganizationShortCode
-    applicationMode: ApplicationMode.test
-  );
+      shortCode: "",
+      consumerKey: "",
+      consumerSecret: "",
+      initiatorName: "",
+      securityCredential: "",
+      passKey: "",
+      identifierType: IdentifierType
+          .OrganizationShortCode, // Type of organization, options, OrganizationShortCode, TillNumber, OrganizationShortCode
+      applicationMode: ApplicationMode.test);
 
   // lipa na mpesa online
   MpesaResponse _res = await mpesa.lipanaMpesaOnline(
@@ -20,90 +20,86 @@ void main() async{
     amount: 0,
     accountReference: "",
     transactionDesc: "",
-    callBackURL: "", 
+    callBackURL: "",
   );
 
   print(_res.statusCode);
   print(_res.rawResponse);
-
 
   // b2c
   _res = await mpesa.b2cTransaction(
-    phoneNumber: "",
-    amount: 0,
-    remarks: "",
-    occassion: "",
-    resultURL: "", 
-    queueTimeOutURL: "",
-    commandID: BcCommandId.BusinessPayment // default
-  );
+      phoneNumber: "",
+      amount: 0,
+      remarks: "",
+      occassion: "",
+      resultURL: "",
+      queueTimeOutURL: "",
+      commandID: BcCommandId.BusinessPayment // default
+      );
 
   print(_res.statusCode);
   print(_res.rawResponse);
 
-  
   // b2b paybill
   _res = await mpesa.b2bPaybillTransaction(
     shortCode: "",
     amount: 0,
     remarks: "",
     accountReference: "",
-    resultURL: "", 
+    resultURL: "",
     queueTimeOutURL: "",
   );
 
   print(_res.statusCode);
   print(_res.rawResponse);
 
-    
   // b2b buy goods
   _res = await mpesa.b2bBuyGoodsTransaction(
     shortCode: "",
     amount: 0,
     remarks: "",
-    resultURL: "", 
+    resultURL: "",
     queueTimeOutURL: "",
   );
 
   print(_res.statusCode);
   print(_res.rawResponse);
 
-  
   // b2b
   _res = await mpesa.b2bTransaction(
     shortCode: "",
     amount: 0,
     remarks: "",
     accountReference: "", // optional
-    resultURL: "", 
+    resultURL: "",
     queueTimeOutURL: "",
-    identifierType: IdentifierType.OrganizationShortCode, // options, OrganizationShortCode, TillNumber, OrganizationShortCode
-    commandID: BbCommandId.BusinessToBusinessTransfer, // options, BusinessToBusinessTransfer, BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, MerchantToMerchantTransfer
+    identifierType: IdentifierType
+        .OrganizationShortCode, // options, OrganizationShortCode, TillNumber, OrganizationShortCode
+    commandID: BbCommandId
+        .BusinessToBusinessTransfer, // options, BusinessToBusinessTransfer, BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, MerchantToMerchantTransfer
   );
 
   print(_res.statusCode);
   print(_res.rawResponse);
 
-    
   // account balance
   _res = await mpesa.accountBalance(
     remarks: "",
-    resultURL: "", 
+    resultURL: "",
     queueTimeOutURL: "",
-  );   
+  );
 
   // transaction status
   _res = await mpesa.transactionStatus(
     transactionID: "",
-    identifierType: IdentifierType.MSISDN, // Type of organization receiving the transaction
+    identifierType:
+        IdentifierType.MSISDN, // Type of organization receiving the transaction
     remarks: "",
     occassion: "",
-    resultURL: "", 
+    resultURL: "",
     queueTimeOutURL: "",
   );
 
   print(_res.statusCode);
   print(_res.rawResponse);
-
-  
 }
