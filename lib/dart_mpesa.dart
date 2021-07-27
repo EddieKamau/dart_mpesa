@@ -5,6 +5,7 @@ library dart_mpesa;
 
 import 'dart:convert';
 
+import 'package:dart_mpesa/src/mpesa_account_balance.dart';
 import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
 import 'package:dart_mpesa/src/mpesa_cb.dart';
@@ -57,6 +58,20 @@ class Mpesa {
   String get timestamp{
     final DateTime _now = DateTime.now();
     return _now.year.toString() + _now.month.toString().padLeft(2, '0') + _now.day.toString().padLeft(2, '0') + _now.hour.toString().padLeft(2, '0') + _now.minute.toString().padLeft(2, '0') + _now.second.toString().padLeft(2, '0');
+  }
+
+
+  // account balance
+  /// Enquire the balance on an M-Pesa BuyGoods (Till Number)
+  Future<MpesaResponse> accountBalance({
+    required String remarks, required String queueTimeOutURL, required String resultURL,
+  }){
+    var _res = MpesaAccountBalance(
+      this, 
+      remarks: remarks, queueTimeOutURL: queueTimeOutURL, resultURL: resultURL, 
+    );
+
+    return _res.process();
   }
 
 
