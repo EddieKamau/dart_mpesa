@@ -36,7 +36,7 @@ class MpesaLipanaMpesa implements MpesaService {
     "TransactionType": "CustomerPayBillOnline",  
     "Amount": amount,    
     "PartyA": phoneNumber,   
-    "ReceiverParty": mpesa.shortCode,   
+    "PartyB": mpesa.shortCode,   
     "PhoneNumber": phoneNumber,  
     "CallBackURL": callBackURL,    
     "AccountReference": accountReference,    

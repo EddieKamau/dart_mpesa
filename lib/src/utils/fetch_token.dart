@@ -9,18 +9,18 @@ Future<Map<String, dynamic>> fetchMpesaToken(String username, String password, {
 
   final MpesaTokenModel _mpesaTokenModel = MpesaTokenModel();
   // models
-  var mpesaTokenModel = _mpesaTokenModel.fetch(MpesaTokenType.normal) as MpesaTokenModel?;
-  var mpesaTokenStkModel = _mpesaTokenModel.fetch(MpesaTokenType.stk) as MpesaTokenModel?;
+  var mpesaTokenModel = await _mpesaTokenModel.fetch(MpesaTokenType.normal);
+  var mpesaTokenStkModel = await _mpesaTokenModel.fetch(MpesaTokenType.stk);
 
 
   // check if expires
-  final bool _tokenModelRes = (stk ? mpesaTokenStkModel : mpesaTokenModel)?.isNotExpired() ?? false;
-  if( _tokenModelRes){
-    return {
-      'status': 0,
-      'token': (stk ? mpesaTokenStkModel : mpesaTokenModel)!.token
-      };
-  }
+  // final bool _tokenModelRes = (stk ? mpesaTokenStkModel : mpesaTokenModel)?.isNotExpired() ?? false;
+  // if( _tokenModelRes){
+  //   return {
+  //     'status': 0,
+  //     'token': (stk ? mpesaTokenStkModel : mpesaTokenModel)!.token
+  //     };
+  // }
 
 
   final _base64E = base64Encode(utf8.encode('$username:$password'));

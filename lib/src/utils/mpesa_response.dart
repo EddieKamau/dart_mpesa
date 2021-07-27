@@ -1,7 +1,7 @@
 class MpesaResponse {
 
   MpesaResponse.fromMap(this.statusCode, this.rawResponse){
-    responseCode = rawResponse['ResponseCode'];
+    responseCode = int.tryParse(rawResponse['ResponseCode'] ?? "");
     responseDescription = rawResponse['ResponseDescription'];
     conversationID = rawResponse['ConversationID'];
     originatorConversationID = rawResponse['OriginatorConversationID'];

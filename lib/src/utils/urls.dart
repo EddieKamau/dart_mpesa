@@ -1,6 +1,6 @@
 // Test
 
-const String mpesaTokenUrlTest = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type:client_credentials';
+const String mpesaTokenUrlTest = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 
 const String mpesaAccountBalanceUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
 
@@ -21,7 +21,7 @@ const String mpesaStkpushQueryUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/s
 const String mpesaTransactionStatusUrLTest = 'https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query';// Test
 
 // live
-const String mpesaTokenUrl = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type:client_credentials';
+const String mpesaTokenUrl = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 
 const String mpesaAccountBalanceUrL = 'https://api.safaricom.co.ke/mpesa/accountbalance/v1/query';
 

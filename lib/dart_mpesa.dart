@@ -32,7 +32,9 @@ class Mpesa {
     required this.consumerSecret,
     this.initiatorName,
     this.securityCredential,
-    this.passKey
+    this.passKey,
+    this.applicationMode = ApplicationMode.production,
+    this.identifierType = IdentifierType.OrganizationShortCode,
   });
 
   ApplicationMode applicationMode = ApplicationMode.production;

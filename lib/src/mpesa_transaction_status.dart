@@ -33,7 +33,7 @@ class MpesaTransactionStatus implements MpesaService {
 
 
   Map<String, dynamic> get payload => {
-    "InitiatorName": mpesa.initiatorName,    
+    "Initiator": mpesa.initiatorName,    
     "SecurityCredential": mpesa.securityCredential, 
     "CommandID": "TransactionStatusQuery", 
     "IdentifierType": identifierType.value,
@@ -42,10 +42,10 @@ class MpesaTransactionStatus implements MpesaService {
     "Remarks": remarks,    
     "QueueTimeOutURL": queueTimeOutURL,    
     "ResultURL": resultURL,    
-    "Occassion": occassion
+    "Occassion": occassion,
   };
 
-  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaReversalUrL : mpesaReversalUrLTest;
+  String get url => mpesa.applicationMode == ApplicationMode.production ? mpesaTransactionStatusUrL : mpesaTransactionStatusUrLTest;
 
   @override
   Future<MpesaResponse> process() async{

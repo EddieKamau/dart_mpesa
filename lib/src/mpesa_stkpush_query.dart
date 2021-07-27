@@ -28,7 +28,7 @@ class MpesaStkPushQuery implements MpesaService {
   Future<MpesaResponse> process() async{
     late Map<String, dynamic> _tokenRes;
     try {
-      _tokenRes = await fetchMpesaToken(mpesa.consumerKey, mpesa.consumerSecret, applicationMode: mpesa.applicationMode);
+      _tokenRes = await fetchMpesaToken(mpesa.consumerKey, mpesa.consumerSecret, applicationMode: mpesa.applicationMode, stk: true);
 
     } catch (e) {
       rethrow;

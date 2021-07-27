@@ -74,7 +74,7 @@ class MpesaB2B implements MpesaService {
 
 
   Map<String, dynamic> get payload => {
-    "InitiatorName": mpesa.initiatorName,    
+    "Initiator": mpesa.initiatorName,    
     "SecurityCredential": mpesa.securityCredential, 
     "CommandID": commandID.enumValue, 
     "SenderIdentifierType": "${mpesa.identifierType.value}",

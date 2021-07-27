@@ -1,4 +1,11 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'dart:io';
+
+import 'package:hive/hive.dart';
+
+part 'mpesa_token_model.g.dart';
+
+final envVarMap = Platform.environment;
+final String? projectPath = envVarMap["PWD"];
 
 @HiveType(typeId: 0)
 class MpesaTokenModel  {
@@ -10,7 +17,9 @@ class MpesaTokenModel  {
 
 
   void init(){
-    Hive.initFlutter();
+     Hive.init(projectPath!);
+     Hive.registerAdapter<MpesaTokenType>(MpesaTokenTypeAdapter());
+     Hive.registerAdapter<MpesaTokenModel>(MpesaTokenModelAdapter());
   }
 
   @HiveField(0)
