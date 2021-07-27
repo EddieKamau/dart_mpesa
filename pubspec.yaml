@@ -1,5 +1,5 @@
 name: dart_mpesa
-description: A starting point for Dart libraries or applications.
+description: This library contains methods that make it easy to consume Mpesa Api.
 version: 1.0.0
 # homepage: https://www.example.com
 environment:
