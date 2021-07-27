@@ -1,6 +1,5 @@
 class MpesaResponse {
-
-  MpesaResponse.fromMap(this.statusCode, this.rawResponse){
+  MpesaResponse.fromMap(this.statusCode, this.rawResponse) {
     responseCode = int.tryParse(rawResponse['ResponseCode'] ?? "");
     responseDescription = rawResponse['ResponseDescription'];
     conversationID = rawResponse['ConversationID'];
@@ -21,9 +20,6 @@ class MpesaResponse {
     requestId = rawResponse[''];
     errorCode = rawResponse[''];
     errorMessage = rawResponse[''];
-
-
-
   }
 
   // from http response
@@ -31,23 +27,20 @@ class MpesaResponse {
   // from http response
   Map<String, dynamic> rawResponse = {};
 
-
   /// This is a global unique Identifier for any submitted payment request.
-  String? merchantRequestID;   
+  String? merchantRequestID;
 
-  /// This is a global unique identifier of the processed checkout transaction request. 
-  String? checkoutRequestID;  
+  /// This is a global unique identifier of the processed checkout transaction request.
+  String? checkoutRequestID;
 
-
-  /// Response description is an acknowledgment message from the API that gives the status of the request submission usually maps to a specific ResponseCode value. It can be a Success submission message or an error description. 
+  /// Response description is an acknowledgment message from the API that gives the status of the request submission usually maps to a specific ResponseCode value. It can be a Success submission message or an error description.
   String? responseDescription;
 
-  /// This is a Numeric status code that indicates the status of the transaction submission. 0 means successful submission and any other code means an error occurred.  
-  int? responseCode;    
+  /// This is a Numeric status code that indicates the status of the transaction submission. 0 means successful submission and any other code means an error occurred.
+  int? responseCode;
 
-  /// This is a message that your system can display to the Customer as an acknowledgement of the payment request submission.  
+  /// This is a message that your system can display to the Customer as an acknowledgement of the payment request submission.
   String? customerMessage;
-
 
   /// For every unique request made to M-PESA, a new ConversationID is generated and returned in the response. This ConversationID carries the response from M-PESA.
   String? conversationID;
@@ -58,11 +51,9 @@ class MpesaResponse {
   /// This is a global unique identifier for the transaction request returned by the API proxy upon successful request submission.
   String? originatorConversationID;
 
-
   // stk query
   String? resultCode;
   String? resultDesc;
-
 
   // error
   /// This is a unique requestID for the payment request
@@ -73,6 +64,4 @@ class MpesaResponse {
 
   /// This is a short descriptive message of the failure reason.
   String? errorMessage;
-
-
 }

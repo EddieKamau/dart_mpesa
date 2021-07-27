@@ -1,13 +1,16 @@
 class MpesaStkCallBackResponse {
-
-  MpesaStkCallBackResponse.fromMap(this.rawResponse){
+  MpesaStkCallBackResponse.fromMap(this.rawResponse) {
     resultDesc = rawResponse['Body']?['stkCallback']?['ResultDesc'];
-    merchantRequestID = rawResponse['Body']?['stkCallback']?['MerchantRequestID'];
-    checkoutRequestID = rawResponse['Body']?['stkCallback']?['CheckoutRequestID'];
+    merchantRequestID =
+        rawResponse['Body']?['stkCallback']?['MerchantRequestID'];
+    checkoutRequestID =
+        rawResponse['Body']?['stkCallback']?['CheckoutRequestID'];
     responseCode = rawResponse['Body']?['stkCallback']?['ResultCode'];
     // if success
-    if(responseCode == 0 && rawResponse['Body']?['stkCallback']?['CallbackMetadata'] != null){
-      callbackMetadata = CallbackMetadata.fromMap(rawResponse['Body']?['stkCallback']?['CallbackMetadata']);
+    if (responseCode == 0 &&
+        rawResponse['Body']?['stkCallback']?['CallbackMetadata'] != null) {
+      callbackMetadata = CallbackMetadata.fromMap(
+          rawResponse['Body']?['stkCallback']?['CallbackMetadata']);
     }
   }
 
@@ -15,29 +18,26 @@ class MpesaStkCallBackResponse {
   Map<String, dynamic> rawResponse = {};
 
   //  ****stk ****
-  /// Response description is an acknowledgment message from the API that gives the status of the request submission usually maps to a specific ResponseCode value. It can be a Success submission message or an error description. 
-  String? resultDesc; 
+  /// Response description is an acknowledgment message from the API that gives the status of the request submission usually maps to a specific ResponseCode value. It can be a Success submission message or an error description.
+  String? resultDesc;
+
   /// This is a global unique Identifier for any submitted payment request.
-  String? merchantRequestID;   
+  String? merchantRequestID;
 
-  /// This is a global unique identifier of the processed checkout transaction request. 
-  String? checkoutRequestID;  
+  /// This is a global unique identifier of the processed checkout transaction request.
+  String? checkoutRequestID;
 
-  /// This is a Numeric status code that indicates the status of the transaction submission. 0 means successful submission and any other code means an error occurred.  
-  int? responseCode; 
+  /// This is a Numeric status code that indicates the status of the transaction submission. 0 means successful submission and any other code means an error occurred.
+  int? responseCode;
 
   ///  This is the JSON object that holds more details for the transaction. It is only returned for Successful transaction.
   CallbackMetadata? callbackMetadata;
-
-
 }
-
 
 // ****stk****
 ///  This is the JSON object that holds more details for the transaction. It is only returned for Successful transaction.
 class CallbackMetadata {
-
-  CallbackMetadata.fromMap(this.rawResponse){
+  CallbackMetadata.fromMap(this.rawResponse) {
     List<Map<String, dynamic>> _items = rawResponse['Item'];
     _items.forEach((element) {
       switch (element['Name']) {
@@ -59,36 +59,29 @@ class CallbackMetadata {
         default:
       }
     });
-
   }
 
   Map<String, dynamic> rawResponse = {};
-  
+
   /// This is the Amount that was transacted
   double? amount;
 
-
   /// This is the unique M-PESA transaction ID for the payment request. Same value is sent to customer over SMS upon successful processing.
   String? mpesaReceiptNumber;
-  
 
   /// This is the Balance of the account for the shortcode used as partyB
   double? balance;
 
-
   /// This is a timestamp that represents the date and time that the transaction completed in the formart YYYYMMDDHHmmss
   DateTime? transactionDate;
-
 
   /// This is the number of the customer who made the payment.
   String? phoneNumber;
 }
 
-
 // ****C2B Validation****
 class C2BValidation {
-
-  C2BValidation.fromMap(this.rawResponse){
+  C2BValidation.fromMap(this.rawResponse) {
     transactionType = rawResponse['TransactionType'];
     transID = rawResponse['TransID'];
     transTime = rawResponse[''];
@@ -102,7 +95,6 @@ class C2BValidation {
     firstName = rawResponse['FirstName'];
     middleName = rawResponse['MiddleName'];
     lastName = rawResponse['LastName'];
-
   }
 
   Map<String, dynamic> rawResponse = {};
@@ -122,16 +114,15 @@ class C2BValidation {
   String? lastName;
 }
 
-
 // ****B2C****
-class B2CCallBackResponse extends CommonCallBackResponse{
+class B2CCallBackResponse extends CommonCallBackResponse {
+  B2CCallBackResponse.fromMap(this.rawResponse) : super(rawResponse) {
+    referenceData =
+        ReferenceData.fromMap(rawResponse['Result']?['ReferenceData'] ?? {});
 
-  B2CCallBackResponse.fromMap(this.rawResponse):super(rawResponse){
-
-    referenceData = ReferenceData.fromMap(rawResponse['Result']?['ReferenceData'] ?? {});
-
-    if(resultCode == 0 && rawResponse['Result']?['ResultParameters'] != null){
-      resultParameter = ResultParameters.fromMap(rawResponse['Result']?['ResultParameters'] ?? {});
+    if (resultCode == 0 && rawResponse['Result']?['ResultParameters'] != null) {
+      resultParameter = ResultParameters.fromMap(
+          rawResponse['Result']?['ResultParameters'] ?? {});
     }
   }
 
@@ -141,21 +132,17 @@ class B2CCallBackResponse extends CommonCallBackResponse{
   ResultParameters? resultParameter;
 
   ReferenceData? referenceData;
-  
 }
 
-
-
-
 // ****Reversal****
-class ReversalCallBackResponse extends CommonCallBackResponse{
+class ReversalCallBackResponse extends CommonCallBackResponse {
+  ReversalCallBackResponse.fromMap(this.rawResponse) : super(rawResponse) {
+    referenceData =
+        ReferenceData.fromMap(rawResponse['Result']?['ReferenceData'] ?? {});
 
-  ReversalCallBackResponse.fromMap(this.rawResponse):super(rawResponse){
-
-    referenceData = ReferenceData.fromMap(rawResponse['Result']?['ReferenceData'] ?? {});
-
-    if(resultCode == 0 && rawResponse['Result']?['ResultParameters'] != null){
-      resultParameter = ReversalResultParameters.fromMap(rawResponse['Result']?['ResultParameters'] ?? {});
+    if (resultCode == 0 && rawResponse['Result']?['ResultParameters'] != null) {
+      resultParameter = ReversalResultParameters.fromMap(
+          rawResponse['Result']?['ResultParameters'] ?? {});
     }
   }
 
@@ -165,18 +152,18 @@ class ReversalCallBackResponse extends CommonCallBackResponse{
   ReversalResultParameters? resultParameter;
 
   ReferenceData? referenceData;
-  
 }
 
 // ****Transaction status****
-class TransactionStatusCallBackResponse extends CommonCallBackResponse{
+class TransactionStatusCallBackResponse extends CommonCallBackResponse {
+  TransactionStatusCallBackResponse.fromMap(this.rawResponse)
+      : super(rawResponse) {
+    referenceData =
+        ReferenceData.fromMap(rawResponse['Result']?['ReferenceData'] ?? {});
 
-  TransactionStatusCallBackResponse.fromMap(this.rawResponse):super(rawResponse){
-
-    referenceData = ReferenceData.fromMap(rawResponse['Result']?['ReferenceData'] ?? {});
-
-    if(resultCode == 0 && rawResponse['Result']?['ResultParameters'] != null){
-      resultParameter = TransactionStatusResultParameters.fromMap(rawResponse['Result']?['ResultParameters'] ?? {});
+    if (resultCode == 0 && rawResponse['Result']?['ResultParameters'] != null) {
+      resultParameter = TransactionStatusResultParameters.fromMap(
+          rawResponse['Result']?['ResultParameters'] ?? {});
     }
   }
 
@@ -186,65 +173,17 @@ class TransactionStatusCallBackResponse extends CommonCallBackResponse{
   TransactionStatusResultParameters? resultParameter;
 
   ReferenceData? referenceData;
-  
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class CommonCallBackResponse {
-
-  CommonCallBackResponse(this.rawResponse){
+  CommonCallBackResponse(this.rawResponse) {
     resultType = rawResponse['Result']?['ResultType'];
     resultCode = rawResponse['Result']?['ResultCode'];
     resultDesc = rawResponse['Result']?['ResultDesc'];
-    originatorConversationID = rawResponse['Result']?['OriginatorConversationID'];
+    originatorConversationID =
+        rawResponse['Result']?['OriginatorConversationID'];
     transactionID = rawResponse['Result']?['TransactionID'];
     conversationID = rawResponse['Result']?['ConversationID'];
-
   }
 
   Map<String, dynamic> rawResponse = {};
@@ -255,8 +194,8 @@ class CommonCallBackResponse {
   /// This is a numeric status code that indicates the status of the transaction processing. 0 means success and any other code means an error occurred or the transaction failed.
   int? resultCode;
 
-  /// Response description is an acknowledgment message from the API that gives the status of the request submission usually maps to a specific ResponseCode value. It can be a Success submission message or an error description. 
-  String? resultDesc; 
+  /// Response description is an acknowledgment message from the API that gives the status of the request submission usually maps to a specific ResponseCode value. It can be a Success submission message or an error description.
+  String? resultDesc;
 
   /// This is a global unique identifier for the transaction request returned by the API proxy upon successful request submission.
   String? originatorConversationID;
@@ -266,16 +205,12 @@ class CommonCallBackResponse {
 
   /// For every unique request made to M-PESA, a new ConversationID is generated and returned in the response. This ConversationID carries the response from M-PESA.
   String? conversationID;
-
-  
 }
 
-
-
 class ResultParameters {
-  ResultParameters.fromMap(this.rawResponse){
+  ResultParameters.fromMap(this.rawResponse) {
     List<Map<String, dynamic>> _items = rawResponse['ResultParameter'];
-    
+
     _items.forEach((element) {
       switch (element['Key']) {
         case 'TransactionAmount':
@@ -305,9 +240,7 @@ class ResultParameters {
         default:
       }
     });
-
   }
-
 
   Map<String, dynamic> rawResponse = {};
 
@@ -316,31 +249,30 @@ class ResultParameters {
 
   /// This is the amount that is transacted. It is also returned under the ResultParameter array.
   double? transactionAmount;
-  
+
   /// This is the available balance of the Working account under the B2C shortcode used in the transaction.
   double? b2CWorkingAccountAvailableFunds;
-  
+
   /// This is the available balance of the Utility account under the B2C shortcode used in the transaction.
   double? b2CUtilityAccountAvailableFunds;
-  
+
   /// This is the available balance of the Charges Paid account under the B2C shortcode used in the transaction.
   double? b2CChargesPaidAccountAvailableFunds;
-  
+
   /// This is a key that indicates whether the customer is a M-PESA registered customer or not. Y for YES, N for NO
   String? b2CRecipientIsRegisteredCustomer;
-  
+
   /// This is the date and time that the transaction completed M-PESA.
   DateTime? transactionCompletedDateTime;
-  
+
   /// This is the name and phone number of the customer who received the payment.
   String? receiverPartyPublicName;
-
-
 }
+
 class ReversalResultParameters {
-  ReversalResultParameters.fromMap(this.rawResponse){
+  ReversalResultParameters.fromMap(this.rawResponse) {
     List<Map<String, dynamic>> _items = rawResponse['ResultParameter'];
-    
+
     _items.forEach((element) {
       switch (element['Key']) {
         case 'DebitAccountBalance':
@@ -367,32 +299,29 @@ class ReversalResultParameters {
         default:
       }
     });
-
   }
-
 
   Map<String, dynamic> rawResponse = {};
 
   String? debitAccountBalance;
 
   double? amount;
-  
-  DateTime? transCompletedTime;
-  
-  String? originalTransactionID;
-  
-  double? charge;
-  
-  String? creditPartyPublicName;
-  
-  String? debitPartyPublicName;
 
+  DateTime? transCompletedTime;
+
+  String? originalTransactionID;
+
+  double? charge;
+
+  String? creditPartyPublicName;
+
+  String? debitPartyPublicName;
 }
 
 class TransactionStatusResultParameters {
-  TransactionStatusResultParameters.fromMap(this.rawResponse){
+  TransactionStatusResultParameters.fromMap(this.rawResponse) {
     List<Map<String, dynamic>> _items = rawResponse['ResultParameter'];
-    
+
     _items.forEach((element) {
       switch (element['Key']) {
         case 'DebitPartyCharges':
@@ -437,26 +366,24 @@ class TransactionStatusResultParameters {
         default:
       }
     });
-
   }
-
 
   Map<String, dynamic> rawResponse = {};
 
   String? debitPartyCharges;
 
   double? amount;
-  
+
   DateTime? initiatedTime;
 
   DateTime? finalisedTime;
-  
+
   String? conversationID;
-  
+
   String? receiptNo;
-  
+
   String? creditPartyPublicName;
-  
+
   String? debitPartyPublicName;
 
   String? transactionStatus;
@@ -468,12 +395,10 @@ class TransactionStatusResultParameters {
   String? debitAccountType;
 
   String? originatorConversationID;
-
 }
 
-
 class ReferenceData {
-  ReferenceData.fromMap(this.rawResponse){
+  ReferenceData.fromMap(this.rawResponse) {
     referenceItem = rawResponse['ReferenceItem']['Value'];
   }
   Map<String, dynamic> rawResponse = {};

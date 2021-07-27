@@ -1,9 +1,7 @@
-enum IdentifierType{
-  MSISDN, TillNumber, OrganizationShortCode
-}
+enum IdentifierType { MSISDN, TillNumber, OrganizationShortCode }
 
-extension IdentifierTypeValue on IdentifierType{
-  int get value{
+extension IdentifierTypeValue on IdentifierType {
+  int get value {
     switch (this) {
       case IdentifierType.MSISDN:
         return 1;
