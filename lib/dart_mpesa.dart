@@ -24,6 +24,8 @@ export 'package:dart_mpesa/src/utils/fetch_token.dart';
 export 'package:dart_mpesa/src/utils/process_mpesa_post_transaction.dart';
 export 'package:dart_mpesa/src/utils/identifierType_enum.dart';
 export 'package:dart_mpesa/src/mpesa_bc.dart';
+export 'package:dart_mpesa/src/mpesa_bb.dart';
+export 'package:dart_mpesa/src/mpesa_cb.dart';
 
 
 class Mpesa {
