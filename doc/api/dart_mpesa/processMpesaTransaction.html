@@ -28,7 +28,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="../index.html">dart_mpesa</a></li>
+    <li><a href="../index.html">dart_mpesa_advanced</a></li>
     <li><a href="../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
     <li class="self-crumb">processMpesaTransaction function</li>
   </ol>
@@ -49,7 +49,7 @@
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="../index.html">dart_mpesa</a></li>
+  <li><a href="../index.html">dart_mpesa_advanced</a></li>
   <li><a href="../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
   <li class="self-crumb">processMpesaTransaction function</li>
 </ol>
@@ -132,32 +132,28 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;MpesaResponse&gt; processMpesaTransaction(
-  String url, Map&lt;String, String&gt; headers, Map&lt;String, dynamic&gt; payload
-)async{
-
-  try{
-
-    final http.Response _res = await http.post(Uri.parse(url), headers: headers, body: json.encode(payload));
+  <pre class="language-dart"><code class="language-dart">Future&lt;MpesaResponse&gt; processMpesaTransaction(String url,
+    Map&lt;String, String&gt; headers, Map&lt;String, dynamic&gt; payload) async {
+  try {
+    final http.Response _res = await http.post(Uri.parse(url),
+        headers: headers, body: json.encode(payload));
     dynamic _body;
     Map&lt;String, dynamic&gt;? _bodyAsmap;
-    try{
+    try {
       _body = json.decode(_res.body);
       _bodyAsmap = _body as Map&lt;String, dynamic&gt;?;
       print(_bodyAsmap);
-    } catch (e){
+    } catch (e) {
       _body = _res.body;
     }
 
-    var _mpesaRespone = MpesaResponse.fromMap(_res.statusCode, _bodyAsmap ?? {});
+    var _mpesaRespone =
+        MpesaResponse.fromMap(_res.statusCode, _bodyAsmap ?? {});
 
     return _mpesaRespone;
-
-
-    } catch (e){
-      rethrow;
-    }
-
+  } catch (e) {
+    rethrow;
+  }
 }</code></pre>
 </section>
 
@@ -171,7 +167,7 @@
 
 <footer>
   <span class="no-break">
-    dart_mpesa
+    dart_mpesa_advanced
       1.0.0
   </span>
 

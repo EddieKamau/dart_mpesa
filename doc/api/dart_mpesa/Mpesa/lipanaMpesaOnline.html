@@ -28,7 +28,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="../../index.html">dart_mpesa</a></li>
+    <li><a href="../../index.html">dart_mpesa_advanced</a></li>
     <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
     <li><a href="../../dart_mpesa/Mpesa-class.html">Mpesa</a></li>
     <li class="self-crumb">lipanaMpesaOnline method</li>
@@ -50,7 +50,7 @@
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="../../index.html">dart_mpesa</a></li>
+  <li><a href="../../index.html">dart_mpesa_advanced</a></li>
   <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
   <li><a href="../../dart_mpesa/Mpesa-class.html">Mpesa</a></li>
   <li class="self-crumb">lipanaMpesaOnline method</li>
@@ -140,14 +140,18 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;MpesaResponse&gt; lipanaMpesaOnline({
-  required String phoneNumber, required double amount, required String accountReference,
-  required String transactionDesc, required String callBackURL,
-}){
-  var _res = MpesaLipanaMpesa(
-    this,
-    phoneNumber: phoneNumber, amount: amount, accountReference: accountReference, transactionDesc: transactionDesc,
-    callBackURL: callBackURL
-  );
+  required String phoneNumber,
+  required double amount,
+  required String accountReference,
+  required String transactionDesc,
+  required String callBackURL,
+}) {
+  var _res = MpesaLipanaMpesa(this,
+      phoneNumber: phoneNumber,
+      amount: amount,
+      accountReference: accountReference,
+      transactionDesc: transactionDesc,
+      callBackURL: callBackURL);
 
   return _res.process();
 }</code></pre>
@@ -163,7 +167,7 @@
 
 <footer>
   <span class="no-break">
-    dart_mpesa
+    dart_mpesa_advanced
       1.0.0
   </span>
 

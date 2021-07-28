@@ -28,7 +28,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="../index.html">dart_mpesa</a></li>
+    <li><a href="../index.html">dart_mpesa_advanced</a></li>
     <li><a href="../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
     <li class="self-crumb">fetchMpesaToken function</li>
   </ol>
@@ -49,7 +49,7 @@
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="../index.html">dart_mpesa</a></li>
+  <li><a href="../index.html">dart_mpesa_advanced</a></li>
   <li><a href="../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
   <li class="self-crumb">fetchMpesaToken function</li>
 </ol>
@@ -122,8 +122,7 @@
 <span class="returntype"><a href="https://api.dart.dev/stable/2.13.1/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.13.1/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.13.1/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
 <span class="name ">fetchMpesaToken</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="fetchMpesaToken-param-username"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.1/dart-core/String-class.html">String</a></span> <span class="parameter-name">username</span>, </span></li>
 <li><span class="parameter" id="fetchMpesaToken-param-password"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.1/dart-core/String-class.html">String</a></span> <span class="parameter-name">password</span>, </span></li>
-<li><span class="parameter" id="fetchMpesaToken-param-stk">{<span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.1/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">stk</span> = <span class="default-value">false</span>, </span></li>
-<li><span class="parameter" id="fetchMpesaToken-param-applicationMode"><span class="type-annotation"><a href="../dart_mpesa/ApplicationMode-class.html">ApplicationMode</a></span> <span class="parameter-name">applicationMode</span> = <span class="default-value">ApplicationMode.production</span>}</span></li>
+<li><span class="parameter" id="fetchMpesaToken-param-applicationMode">{<span class="type-annotation"><a href="../dart_mpesa/ApplicationMode-class.html">ApplicationMode</a></span> <span class="parameter-name">applicationMode</span> = <span class="default-value">ApplicationMode.production</span>}</span></li>
 </ol>)
 
     </section>
@@ -133,51 +132,42 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;Map&lt;String, dynamic&gt;&gt; fetchMpesaToken(String username, String password, {bool stk = false, ApplicationMode applicationMode = ApplicationMode.production})async{
-
+  <pre class="language-dart"><code class="language-dart">Future&lt;Map&lt;String, dynamic&gt;&gt; fetchMpesaToken(String username, String password,
+    {ApplicationMode applicationMode = ApplicationMode.production}) async {
   final MpesaTokenModel _mpesaTokenModel = MpesaTokenModel();
   &#47;&#47; models
-  var mpesaTokenModel = await _mpesaTokenModel.fetch(MpesaTokenType.normal);
-  var mpesaTokenStkModel = await _mpesaTokenModel.fetch(MpesaTokenType.stk);
-
+  var mpesaTokenModel = await _mpesaTokenModel.fetch(username);
 
   &#47;&#47; check if expires
-  &#47;&#47; final bool _tokenModelRes = (stk ? mpesaTokenStkModel : mpesaTokenModel)?.isNotExpired() ?? false;
-  &#47;&#47; if( _tokenModelRes){
-  &#47;&#47;   return {
-  &#47;&#47;     &#39;status&#39;: 0,
-  &#47;&#47;     &#39;token&#39;: (stk ? mpesaTokenStkModel : mpesaTokenModel)!.token
-  &#47;&#47;     };
-  &#47;&#47; }
-
+  final bool _tokenModelRes = mpesaTokenModel?.isNotExpired() ?? false;
+  if (_tokenModelRes) {
+    return {&#39;status&#39;: 0, &#39;token&#39;: mpesaTokenModel!.token};
+  }
 
   final _base64E = base64Encode(utf8.encode(&#39;$username:$password&#39;));
   final String basicAuth = &#39;Basic $_base64E&#39;;
 
-
-  try{
-    String _url = applicationMode == ApplicationMode.production ? mpesaTokenUrl : mpesaTokenUrlTest;
-    final http.Response _res = await http.get(Uri.parse(_url),headers: &lt;String, String&gt;{&#39;authorization&#39;: basicAuth});
-    if(_res.statusCode == 200){
+  try {
+    String _url = applicationMode == ApplicationMode.production
+        ? mpesaTokenUrl
+        : mpesaTokenUrlTest;
+    final http.Response _res = await http.get(Uri.parse(_url),
+        headers: &lt;String, String&gt;{&#39;authorization&#39;: basicAuth});
+    if (_res.statusCode == 200) {
       final _body = json.decode(_res.body);
 
       &#47;&#47; save to hive box
       await _mpesaTokenModel.put(
-        &#47;&#47; token model
-        MpesaTokenModel(
-          _body[&#39;access_token&#39;].toString(), &#47;&#47; token
-          DateTime.now().add(Duration(seconds: int.tryParse(_body[&#39;expires_in&#39;].toString()) ?? 0))
-        ),
+          &#47;&#47; token model
+          MpesaTokenModel(
+              _body[&#39;access_token&#39;].toString(), &#47;&#47; token
+              DateTime.now().add(Duration(
+                  seconds: int.tryParse(_body[&#39;expires_in&#39;].toString()) ?? 0))),
 
-        &#47;&#47; token type
-        stk ? MpesaTokenType.stk : MpesaTokenType.normal
-      );
+          &#47;&#47; token key
+          username);
 
-
-      return {
-        &#39;status&#39;: 0,
-        &#39;token&#39;: _body[&#39;access_token&#39;].toString()
-        };
+      return {&#39;status&#39;: 0, &#39;token&#39;: _body[&#39;access_token&#39;].toString()};
     } else {
       throw FetchTokenError(_res.body);
       &#47;&#47; return {
@@ -185,7 +175,7 @@
       &#47;&#47;   &#39;errorMessage&#39;: json.decode(_res.body)
       &#47;&#47; };
     }
-  }catch (e){
+  } catch (e) {
     throw FetchTokenError(e.toString());
     &#47;&#47; return {
     &#47;&#47;     &#39;status&#39;: 101,
@@ -205,7 +195,7 @@
 
 <footer>
   <span class="no-break">
-    dart_mpesa
+    dart_mpesa_advanced
       1.0.0
   </span>
 

@@ -28,7 +28,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="../../index.html">dart_mpesa</a></li>
+    <li><a href="../../index.html">dart_mpesa_advanced</a></li>
     <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
     <li><a href="../../dart_mpesa/Mpesa-class.html">Mpesa</a></li>
     <li class="self-crumb">b2bPaybillTransaction method</li>
@@ -50,7 +50,7 @@
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="../../index.html">dart_mpesa</a></li>
+  <li><a href="../../index.html">dart_mpesa_advanced</a></li>
   <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
   <li><a href="../../dart_mpesa/Mpesa-class.html">Mpesa</a></li>
   <li class="self-crumb">b2bPaybillTransaction method</li>
@@ -130,7 +130,7 @@
 <section class="desc markdown">
   <p>This is a transfer of funds from one Organization's Working Account to another Organization's Utility Account.
 <code>shortCode</code> This is the customer business number to receive the amount.
-<code>amount</code> The amount of money being sent to the customer. 
+<code>amount</code> The amount of money being sent to the customer.
 <code>accountReference</code> Any additional information to be associated with the transaction. Sentence of upto 100 characters
 <code>remarks</code> Comments that are sent along with the transaction. Sentence of up to 100 characters
 <code>queueTimeOutURL</code> This is the URL to be specified in your request that will be used by API Proxy to send notification incase the payment request is timed out while awaiting processing in the queue.
@@ -142,13 +142,21 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;MpesaResponse&gt; b2bPaybillTransaction({
-  required String shortCode, required double amount, required String remarks,
-  required String accountReference, required String queueTimeOutURL, required String resultURL,
-}){
+  required String shortCode,
+  required double amount,
+  required String remarks,
+  required String accountReference,
+  required String queueTimeOutURL,
+  required String resultURL,
+}) {
   var _bc = MpesaB2B.paybill(
     this,
-    shortCode: shortCode, amount: amount, remarks: remarks, accountReference: accountReference,
-    queueTimeOutURL: queueTimeOutURL, resultURL: resultURL,
+    shortCode: shortCode,
+    amount: amount,
+    remarks: remarks,
+    accountReference: accountReference,
+    queueTimeOutURL: queueTimeOutURL,
+    resultURL: resultURL,
   );
 
   return _bc.process();
@@ -165,7 +173,7 @@
 
 <footer>
   <span class="no-break">
-    dart_mpesa
+    dart_mpesa_advanced
       1.0.0
   </span>
 

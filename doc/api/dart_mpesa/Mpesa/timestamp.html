@@ -28,7 +28,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="../../index.html">dart_mpesa</a></li>
+    <li><a href="../../index.html">dart_mpesa_advanced</a></li>
     <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
     <li><a href="../../dart_mpesa/Mpesa-class.html">Mpesa</a></li>
     <li class="self-crumb">timestamp property</li>
@@ -50,7 +50,7 @@
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="../../index.html">dart_mpesa</a></li>
+  <li><a href="../../index.html">dart_mpesa_advanced</a></li>
   <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
   <li><a href="../../dart_mpesa/Mpesa-class.html">Mpesa</a></li>
   <li class="self-crumb">timestamp property</li>
@@ -127,9 +127,14 @@
 
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">String get timestamp{
+  <pre class="language-dart"><code class="language-dart">String get timestamp {
   final DateTime _now = DateTime.now();
-  return _now.year.toString() + _now.month.toString().padLeft(2, &#39;0&#39;) + _now.day.toString().padLeft(2, &#39;0&#39;) + _now.hour.toString().padLeft(2, &#39;0&#39;) + _now.minute.toString().padLeft(2, &#39;0&#39;) + _now.second.toString().padLeft(2, &#39;0&#39;);
+  return _now.year.toString() +
+      _now.month.toString().padLeft(2, &#39;0&#39;) +
+      _now.day.toString().padLeft(2, &#39;0&#39;) +
+      _now.hour.toString().padLeft(2, &#39;0&#39;) +
+      _now.minute.toString().padLeft(2, &#39;0&#39;) +
+      _now.second.toString().padLeft(2, &#39;0&#39;);
 }</code></pre>
 </section>
 
@@ -145,7 +150,7 @@
 
 <footer>
   <span class="no-break">
-    dart_mpesa
+    dart_mpesa_advanced
       1.0.0
   </span>
 

@@ -28,7 +28,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="../../index.html">dart_mpesa</a></li>
+    <li><a href="../../index.html">dart_mpesa_advanced</a></li>
     <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
     <li><a href="../../dart_mpesa/MpesaB2B-class.html">MpesaB2B</a></li>
     <li class="self-crumb">payload property</li>
@@ -50,7 +50,7 @@
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="../../index.html">dart_mpesa</a></li>
+  <li><a href="../../index.html">dart_mpesa_advanced</a></li>
   <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
   <li><a href="../../dart_mpesa/MpesaB2B-class.html">MpesaB2B</a></li>
   <li class="self-crumb">payload property</li>
@@ -121,19 +121,19 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Map&lt;String, dynamic&gt; get payload =&gt; {
-  &quot;Initiator&quot;: mpesa.initiatorName,
-  &quot;SecurityCredential&quot;: mpesa.securityCredential,
-  &quot;CommandID&quot;: commandID.enumValue,
-  &quot;SenderIdentifierType&quot;: &quot;${mpesa.identifierType.value}&quot;,
-  &quot;RecieverIdentifierType&quot;: &quot;${identifierType.value}&quot;,
-  &quot;Amount&quot;: amount,
-  &quot;PartyA&quot;: mpesa.shortCode,
-  &quot;PartyB&quot;: shortCode,
-  if(accountReference != null) &quot;AccountReference&quot;: accountReference,
-  &quot;Remarks&quot;: remarks,
-  &quot;QueueTimeOutURL&quot;: queueTimeOutURL,
-  &quot;ResultURL&quot;: resultURL,
-};</code></pre>
+      &quot;Initiator&quot;: mpesa.initiatorName,
+      &quot;SecurityCredential&quot;: mpesa.securityCredential,
+      &quot;CommandID&quot;: commandID.enumValue,
+      &quot;SenderIdentifierType&quot;: &quot;${mpesa.identifierType.value}&quot;,
+      &quot;RecieverIdentifierType&quot;: &quot;${identifierType.value}&quot;,
+      &quot;Amount&quot;: amount,
+      &quot;PartyA&quot;: mpesa.shortCode,
+      &quot;PartyB&quot;: shortCode,
+      if (accountReference != null) &quot;AccountReference&quot;: accountReference,
+      &quot;Remarks&quot;: remarks,
+      &quot;QueueTimeOutURL&quot;: queueTimeOutURL,
+      &quot;ResultURL&quot;: resultURL,
+    };</code></pre>
 </section>
 
 </section>
@@ -148,7 +148,7 @@
 
 <footer>
   <span class="no-break">
-    dart_mpesa
+    dart_mpesa_advanced
       1.0.0
   </span>
 

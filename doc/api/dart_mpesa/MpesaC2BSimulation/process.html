@@ -28,7 +28,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="../../index.html">dart_mpesa</a></li>
+    <li><a href="../../index.html">dart_mpesa_advanced</a></li>
     <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
     <li><a href="../../dart_mpesa/MpesaC2BSimulation-class.html">MpesaC2BSimulation</a></li>
     <li class="self-crumb">process method</li>
@@ -50,7 +50,7 @@
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="../../index.html">dart_mpesa</a></li>
+  <li><a href="../../index.html">dart_mpesa_advanced</a></li>
   <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
   <li><a href="../../dart_mpesa/MpesaC2BSimulation-class.html">MpesaC2BSimulation</a></li>
   <li class="self-crumb">process method</li>
@@ -119,11 +119,11 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
-Future&lt;MpesaResponse&gt; process() async{
+Future&lt;MpesaResponse&gt; process() async {
   late Map&lt;String, dynamic&gt; _tokenRes;
   try {
-    _tokenRes = await fetchMpesaToken(mpesa.consumerKey, mpesa.consumerSecret, applicationMode: mpesa.applicationMode);
-
+    _tokenRes = await fetchMpesaToken(mpesa.consumerKey, mpesa.consumerSecret,
+        applicationMode: mpesa.applicationMode);
   } catch (e) {
     rethrow;
   }
@@ -147,7 +147,7 @@ Future&lt;MpesaResponse&gt; process() async{
 
 <footer>
   <span class="no-break">
-    dart_mpesa
+    dart_mpesa_advanced
       1.0.0
   </span>
 
