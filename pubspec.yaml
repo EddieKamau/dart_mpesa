@@ -1,7 +1,7 @@
 name: dart_mpesa_advanced
 description: This library contains methods that make it easy to consume Mpesa
   Api and manage the token for you.
-version: 0.0.2
+version: 1.0.0
 homepage: https://github.com/EddieKamau/dart_mpesa/tree/advanced
 environment:
   sdk: '>=2.12.0 <3.0.0'
