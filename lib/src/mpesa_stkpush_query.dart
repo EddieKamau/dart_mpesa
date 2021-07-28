@@ -1,4 +1,4 @@
-import 'package:dart_mpesa_advanced/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa_advanced.dart';
 
 /// Use this API to check the status of a Lipa Na M-Pesa Online Payment.
 class MpesaStkPushQuery implements MpesaService {
@@ -28,7 +28,7 @@ class MpesaStkPushQuery implements MpesaService {
     late Map<String, dynamic> _tokenRes;
     try {
       _tokenRes = await fetchMpesaToken(mpesa.consumerKey, mpesa.consumerSecret,
-          applicationMode: mpesa.applicationMode, stk: true);
+          applicationMode: mpesa.applicationMode);
     } catch (e) {
       rethrow;
     }

@@ -17,7 +17,6 @@ class MpesaTokenModel {
 
   void init() {
     Hive.init(projectPath!);
-    Hive.registerAdapter<MpesaTokenType>(MpesaTokenTypeAdapter());
     Hive.registerAdapter<MpesaTokenModel>(MpesaTokenModelAdapter());
   }
 
@@ -41,36 +40,17 @@ class MpesaTokenModel {
 
   Box get box => Hive.box(_boxLabel);
 
-  Future<MpesaTokenModel?> fetch(MpesaTokenType key) async {
+  Future<MpesaTokenModel?> fetch(String key) async {
     await openBox;
-    var _res = box.get(key.value) as MpesaTokenModel?;
+    var _res = box.get(key) as MpesaTokenModel?;
     await box.close();
     return _res;
   }
 
-  Future<void> put(MpesaTokenModel value, MpesaTokenType key) async {
+  Future<void> put(MpesaTokenModel value, String key) async {
     await openBox;
-    var _res = await box.put(key.value, value);
+    var _res = await box.put(key, value);
     await box.close();
     return _res;
-  }
-}
-
-@HiveType(typeId: 1)
-enum MpesaTokenType {
-  @HiveField(0)
-  normal,
-  @HiveField(1)
-  stk
-}
-
-extension MpesaTokenTypeValue on MpesaTokenType {
-  String get value {
-    switch (this) {
-      case MpesaTokenType.stk:
-        return 'stk';
-      default:
-        return 'normal';
-    }
   }
 }

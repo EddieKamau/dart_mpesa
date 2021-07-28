@@ -1,4 +1,4 @@
-import 'package:dart_mpesa_advanced/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa_advanced.dart';
 
 /// Check the status of a transaction
 class MpesaTransactionStatus implements MpesaService {

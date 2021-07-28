@@ -1,26 +1,21 @@
 import 'dart:convert';
 
-import 'package:dart_mpesa_advanced/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa_advanced.dart';
 import 'package:dart_mpesa_advanced/src/utils/urls.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_mpesa_advanced/src/utils/mpesa_token_model.dart';
 
 Future<Map<String, dynamic>> fetchMpesaToken(String username, String password,
-    {bool stk = false,
-    ApplicationMode applicationMode = ApplicationMode.production}) async {
+    {ApplicationMode applicationMode = ApplicationMode.production}) async {
   final MpesaTokenModel _mpesaTokenModel = MpesaTokenModel();
   // models
-  var mpesaTokenModel = await _mpesaTokenModel.fetch(MpesaTokenType.normal);
-  var mpesaTokenStkModel = await _mpesaTokenModel.fetch(MpesaTokenType.stk);
+  var mpesaTokenModel = await _mpesaTokenModel.fetch(username);
 
   // check if expires
-  // final bool _tokenModelRes = (stk ? mpesaTokenStkModel : mpesaTokenModel)?.isNotExpired() ?? false;
-  // if( _tokenModelRes){
-  //   return {
-  //     'status': 0,
-  //     'token': (stk ? mpesaTokenStkModel : mpesaTokenModel)!.token
-  //     };
-  // }
+  final bool _tokenModelRes = mpesaTokenModel?.isNotExpired() ?? false;
+  if (_tokenModelRes) {
+    return {'status': 0, 'token': mpesaTokenModel!.token};
+  }
 
   final _base64E = base64Encode(utf8.encode('$username:$password'));
   final String basicAuth = 'Basic $_base64E';
@@ -42,8 +37,8 @@ Future<Map<String, dynamic>> fetchMpesaToken(String username, String password,
               DateTime.now().add(Duration(
                   seconds: int.tryParse(_body['expires_in'].toString()) ?? 0))),
 
-          // token type
-          stk ? MpesaTokenType.stk : MpesaTokenType.normal);
+          // token key
+          username);
 
       return {'status': 0, 'token': _body['access_token'].toString()};
     } else {

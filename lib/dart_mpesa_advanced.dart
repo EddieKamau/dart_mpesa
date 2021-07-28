@@ -15,6 +15,7 @@ import 'package:dart_mpesa_advanced/src/mpesa_transaction_status.dart';
 import 'package:dart_mpesa_advanced/src/utils/fetch_token.dart';
 import 'package:dart_mpesa_advanced/src/utils/identifierType_enum.dart';
 import 'package:dart_mpesa_advanced/src/utils/mpesa_response.dart';
+import 'package:dart_mpesa_advanced/src/utils/mpesa_token_model.dart';
 
 export 'package:dart_mpesa_advanced/src/utils/mpesa_response.dart';
 export 'package:dart_mpesa_advanced/src/mpesa_service_shell.dart';
@@ -36,7 +37,11 @@ class Mpesa {
     this.passKey,
     this.applicationMode = ApplicationMode.production,
     this.identifierType = IdentifierType.OrganizationShortCode,
-  });
+  }) {
+    // initialive storage
+    MpesaTokenModel _mpesaTokenModel = MpesaTokenModel();
+    _mpesaTokenModel.init();
+  }
 
   ApplicationMode applicationMode = ApplicationMode.production;
 

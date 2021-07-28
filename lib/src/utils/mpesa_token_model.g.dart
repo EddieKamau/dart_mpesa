@@ -6,45 +6,6 @@ part of 'mpesa_token_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class MpesaTokenTypeAdapter extends TypeAdapter<MpesaTokenType> {
-  @override
-  final int typeId = 1;
-
-  @override
-  MpesaTokenType read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return MpesaTokenType.normal;
-      case 1:
-        return MpesaTokenType.stk;
-      default:
-        return MpesaTokenType.normal;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, MpesaTokenType obj) {
-    switch (obj) {
-      case MpesaTokenType.normal:
-        writer.writeByte(0);
-        break;
-      case MpesaTokenType.stk:
-        writer.writeByte(1);
-        break;
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MpesaTokenTypeAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
 class MpesaTokenModelAdapter extends TypeAdapter<MpesaTokenModel> {
   @override
   final int typeId = 0;

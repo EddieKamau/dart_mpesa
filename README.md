@@ -1,4 +1,5 @@
-This library contains methods that make it easy to consume Mpesa Api. It's multi-platform, and supports CLI, server, mobile, desktop, and the browser.
+This library contains methods that make it easy to consume Mpesa Api, and manage the token for you.(Fetches a new token only when the current has expired) 
+It's multi-platform, and supports CLI, server, mobile, desktop, and the browser.
 
 Ready Methods/APIs include
 - [x] LIPA NA MPESA

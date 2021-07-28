@@ -1,4 +1,4 @@
-import 'package:dart_mpesa_advanced/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa_advanced.dart';
 import 'package:dart_mpesa_advanced/src/mpesa_bb.dart';
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';

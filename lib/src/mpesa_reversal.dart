@@ -1,4 +1,4 @@
-import 'package:dart_mpesa_advanced/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa_advanced.dart';
 
 /// Reverses a B2B, B2C or C2B M-Pesa transaction.
 class MpesaReversal implements MpesaService {
