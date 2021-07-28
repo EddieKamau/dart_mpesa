@@ -1,18 +1,20 @@
-name: dart_mpesa
-description: This library contains methods that make it easy to consume Mpesa Api.
+name: dart_mpesa_advanced
+description: This library contains methods that make it easy to consume Mpesa
+  Api. and manage the token for you
 version: 0.0.1
 homepage: https://github.com/EddieKamau/dart_mpesa
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
+  enum_object: ^0.0.2
   hive: ^2.0.4
   http: ^0.13.3
-  enum_object: ^0.0.2
+  path_provider: ^2.0.2
 #   path: ^1.8.0
 dev_dependencies:
-  hive_generator: ^1.1.0
   build_runner: ^2.0.6
+  hive_generator: ^1.1.0
+  mockito: ^5.0.12
   pedantic: ^1.10.0
   test: ^1.16.0
-  mockito: ^5.0.12

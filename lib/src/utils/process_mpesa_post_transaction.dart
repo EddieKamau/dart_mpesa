@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dart_mpesa/src/utils/mpesa_response.dart';
+import 'package:dart_mpesa_advanced/src/utils/mpesa_response.dart';
 import 'package:http/http.dart' as http;
 
 Future<MpesaResponse> processMpesaTransaction(String url,

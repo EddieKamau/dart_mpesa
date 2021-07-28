@@ -16,7 +16,7 @@ Ready Methods/APIs include
 Create an instance of Mpesa, then use its methods to consume the Api
 
 ```dart
-import 'package:dart_mpesa/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa.dart';
 
 main() {
   var mpesa = Mpesa(

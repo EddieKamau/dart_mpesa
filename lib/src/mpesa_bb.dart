@@ -1,4 +1,4 @@
-import 'package:dart_mpesa/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa.dart';
 import 'package:enum_object/enum_object.dart';
 
 /// The Business to Business (B2B) API is used to transfer money from one business to another business.

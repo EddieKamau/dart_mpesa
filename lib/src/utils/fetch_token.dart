@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:dart_mpesa/dart_mpesa.dart';
-import 'package:dart_mpesa/src/utils/urls.dart';
+import 'package:dart_mpesa_advanced/dart_mpesa.dart';
+import 'package:dart_mpesa_advanced/src/utils/urls.dart';
 import 'package:http/http.dart' as http;
-import 'package:dart_mpesa/src/utils/mpesa_token_model.dart';
+import 'package:dart_mpesa_advanced/src/utils/mpesa_token_model.dart';
 
 Future<Map<String, dynamic>> fetchMpesaToken(String username, String password,
     {bool stk = false,

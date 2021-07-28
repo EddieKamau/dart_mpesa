@@ -4,27 +4,27 @@ library dart_mpesa;
 
 import 'dart:convert';
 
-import 'package:dart_mpesa/src/mpesa_account_balance.dart';
-import 'package:dart_mpesa/src/mpesa_bb.dart';
-import 'package:dart_mpesa/src/mpesa_bc.dart';
-import 'package:dart_mpesa/src/mpesa_cb.dart';
-import 'package:dart_mpesa/src/mpesa_lipanampesa.dart';
-import 'package:dart_mpesa/src/mpesa_reversal.dart';
-import 'package:dart_mpesa/src/mpesa_stkpush_query.dart';
-import 'package:dart_mpesa/src/mpesa_transaction_status.dart';
-import 'package:dart_mpesa/src/utils/fetch_token.dart';
-import 'package:dart_mpesa/src/utils/identifierType_enum.dart';
-import 'package:dart_mpesa/src/utils/mpesa_response.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_account_balance.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_bb.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_bc.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_cb.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_lipanampesa.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_reversal.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_stkpush_query.dart';
+import 'package:dart_mpesa_advanced/src/mpesa_transaction_status.dart';
+import 'package:dart_mpesa_advanced/src/utils/fetch_token.dart';
+import 'package:dart_mpesa_advanced/src/utils/identifierType_enum.dart';
+import 'package:dart_mpesa_advanced/src/utils/mpesa_response.dart';
 
-export 'package:dart_mpesa/src/utils/mpesa_response.dart';
-export 'package:dart_mpesa/src/mpesa_service_shell.dart';
-export 'package:dart_mpesa/src/utils/urls.dart';
-export 'package:dart_mpesa/src/utils/fetch_token.dart';
-export 'package:dart_mpesa/src/utils/process_mpesa_post_transaction.dart';
-export 'package:dart_mpesa/src/utils/identifierType_enum.dart';
-export 'package:dart_mpesa/src/mpesa_bc.dart';
-export 'package:dart_mpesa/src/mpesa_bb.dart';
-export 'package:dart_mpesa/src/mpesa_cb.dart';
+export 'package:dart_mpesa_advanced/src/utils/mpesa_response.dart';
+export 'package:dart_mpesa_advanced/src/mpesa_service_shell.dart';
+export 'package:dart_mpesa_advanced/src/utils/urls.dart';
+export 'package:dart_mpesa_advanced/src/utils/fetch_token.dart';
+export 'package:dart_mpesa_advanced/src/utils/process_mpesa_post_transaction.dart';
+export 'package:dart_mpesa_advanced/src/utils/identifierType_enum.dart';
+export 'package:dart_mpesa_advanced/src/mpesa_bc.dart';
+export 'package:dart_mpesa_advanced/src/mpesa_bb.dart';
+export 'package:dart_mpesa_advanced/src/mpesa_cb.dart';
 
 class Mpesa {
   Mpesa({
