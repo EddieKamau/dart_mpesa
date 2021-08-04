@@ -17,6 +17,7 @@ import 'package:dart_mpesa/src/utils/identifierType_enum.dart';
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
 
 export 'package:dart_mpesa/src/utils/mpesa_response.dart';
+export 'package:dart_mpesa/src/utils/mpesa_callback_response.dart';
 export 'package:dart_mpesa/src/mpesa_service_shell.dart';
 export 'package:dart_mpesa/src/utils/urls.dart';
 export 'package:dart_mpesa/src/utils/fetch_token.dart';
