@@ -8,6 +8,7 @@ import 'package:dart_mpesa/src/mpesa_account_balance.dart';
 import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:dart_mpesa/src/mpesa_bc.dart';
 import 'package:dart_mpesa/src/mpesa_cb.dart';
+import 'package:dart_mpesa/src/mpesa_cb_register_url.dart';
 import 'package:dart_mpesa/src/mpesa_lipanampesa.dart';
 import 'package:dart_mpesa/src/mpesa_reversal.dart';
 import 'package:dart_mpesa/src/mpesa_stkpush_query.dart';
@@ -300,6 +301,26 @@ class Mpesa {
     var _res = MpesaStkPushQuery(
       this,
       checkoutRequestID: checkoutRequestID,
+    );
+
+    return _res.process();
+  }
+
+  // c2b register url
+  /// Register validation and confirmation URLs on M-Pesa
+  /// [responseType] parameter specifies what is to happen if for any reason the validation URL is not reachable. Only two value are allowed: Completed or Cancelled .
+  /// [confirmationURL] is the URL that receives the confirmation request from API upon payment completion
+  /// [validationURL] is the URL that receives the validation request from API upon payment submission. The validation URL is only called if external validation on the registered shortcode is enabled. (By default external validation is disabled)
+  Future<MpesaResponse> c2bRegisterUrl({
+    required String responseType,
+    required String validationURL,
+    required String confirmationURL,
+  }) {
+    var _res = MpesaC2BRegisterUrl(
+      this,
+      responseType: responseType,
+      validationURL: validationURL,
+      confirmationURL: confirmationURL,
     );
 
     return _res.process();

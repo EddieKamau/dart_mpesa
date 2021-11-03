@@ -13,7 +13,6 @@ Future<MpesaResponse> processMpesaTransaction(String url,
     try {
       _body = json.decode(_res.body);
       _bodyAsmap = _body as Map<String, dynamic>?;
-      print(_bodyAsmap);
     } catch (e) {
       _body = _res.body;
     }

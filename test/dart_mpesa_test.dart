@@ -128,7 +128,7 @@ void main() {
     test('b2b', () async {
       expect(
           (await mpesa.b2bTransaction(
-                  shortCode: "",
+                  shortCode: '',
                   amount: 0,
                   remarks: '',
                   queueTimeOutURL: '',
@@ -142,27 +142,27 @@ void main() {
     test('lipa na mpesa', () async {
       expect(
           (await mpesa.lipanaMpesaOnline(
-                  phoneNumber: "",
+                  phoneNumber: '',
                   amount: 0,
-                  accountReference: "",
-                  transactionDesc: "",
-                  callBackURL: "callBackURL"))
+                  accountReference: '',
+                  transactionDesc: '',
+                  callBackURL: 'callBackURL'))
               .merchantRequestID,
-          "29115-34620561-1");
+          '29115-34620561-1');
     });
 
     test('account balance', () async {
       expect(
           (await mpesa.accountBalance(
-                  remarks: "remarks", queueTimeOutURL: "", resultURL: ""))
+                  remarks: 'remarks', queueTimeOutURL: '', resultURL: ''))
               .conversationID,
-          "AG_20191219_00005797af5d7d75f652");
+          'AG_20191219_00005797af5d7d75f652');
     });
 
     test('b2b error', () async {
       expect(
           (await mpesa.b2bTransaction(
-                  shortCode: "",
+                  shortCode: '',
                   amount: 0,
                   remarks: '',
                   queueTimeOutURL: '',

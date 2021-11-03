@@ -17,7 +17,7 @@ class MpesaResponse {
     resultDesc = rawResponse['ResultDesc'];
 
     // error
-    requestId = rawResponse[''];
+    requestId = rawResponse[''];// TODO
     errorCode = rawResponse[''];
     errorMessage = rawResponse[''];
   }
@@ -64,4 +64,19 @@ class MpesaResponse {
 
   /// This is a short descriptive message of the failure reason.
   String? errorMessage;
+
+  Map<String, dynamic> asMap()=>{
+    if(responseCode != null) 'responseCode': responseCode,
+    if(responseDescription != null) 'responseDescription': responseDescription,
+    if(conversationID != null) 'conversationID': conversationID,
+    if(originatorConversationID != null) 'originatorConversationID': originatorConversationID,
+    if(merchantRequestID != null) 'merchantRequestID': merchantRequestID,
+    if(checkoutRequestID != null) 'checkoutRequestID': checkoutRequestID,
+    if(customerMessage != null) 'customerMessage': customerMessage,
+    if(resultCode != null) 'resultCode': resultCode,
+    if(resultDesc != null) 'resultDesc': resultDesc,
+    if(requestId != null) 'requestId': requestId,
+    if(errorCode != null) 'errorCode': errorCode,
+    if(errorMessage != null) 'errorMessage': errorMessage,
+  };
 }
