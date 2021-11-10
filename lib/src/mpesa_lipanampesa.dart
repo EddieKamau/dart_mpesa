@@ -31,17 +31,17 @@ class MpesaLipanaMpesa implements MpesaService {
   String callBackURL;
 
   Map<String, dynamic> get payload => {
-        "BusinessShortCode": mpesa.shortCode,
-        "Password": mpesa.password,
-        "Timestamp": mpesa.timestamp,
-        "TransactionType": "CustomerPayBillOnline",
-        "Amount": amount,
-        "PartyA": phoneNumber,
-        "PartyB": mpesa.shortCode,
-        "PhoneNumber": phoneNumber,
-        "CallBackURL": callBackURL,
-        "AccountReference": accountReference,
-        "TransactionDesc": transactionDesc
+        'BusinessShortCode': mpesa.shortCode,
+        'Password': mpesa.password,
+        'Timestamp': mpesa.timestamp,
+        'TransactionType': 'CustomerPayBillOnline',
+        'Amount': amount,
+        'PartyA': phoneNumber,
+        'PartyB': mpesa.shortCode,
+        'PhoneNumber': phoneNumber,
+        'CallBackURL': callBackURL,
+        'AccountReference': accountReference,
+        'TransactionDesc': transactionDesc
       };
 
   String get url => mpesa.applicationMode == ApplicationMode.production
@@ -58,7 +58,7 @@ class MpesaLipanaMpesa implements MpesaService {
       rethrow;
     }
 
-    Map<String, String> headers = {
+    var headers = <String, String>{
       'content-type': 'application/json',
       'Authorization': 'Bearer ${_tokenRes["token"]}'
     };

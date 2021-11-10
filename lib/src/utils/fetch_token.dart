@@ -7,13 +7,13 @@ import 'package:http/http.dart' as http;
 Future<Map<String, dynamic>> fetchMpesaToken(String username, String password,
     {ApplicationMode applicationMode = ApplicationMode.production}) async {
   final _base64E = base64Encode(utf8.encode('$username:$password'));
-  final String basicAuth = 'Basic $_base64E';
+  final basicAuth = 'Basic $_base64E';
 
   try {
-    String _url = applicationMode == ApplicationMode.production
+    var _url = applicationMode == ApplicationMode.production
         ? mpesaTokenUrl
         : mpesaTokenUrlTest;
-    final http.Response _res = await http.get(Uri.parse(_url),
+    final _res = await http.get(Uri.parse(_url),
         headers: <String, String>{'authorization': basicAuth});
     if (_res.statusCode == 200) {
       final _body = json.decode(_res.body);
@@ -30,8 +30,9 @@ Future<Map<String, dynamic>> fetchMpesaToken(String username, String password,
 class FetchTokenError extends Error {
   final String? message;
   FetchTokenError([this.message]);
+  @override
   String toString() {
     var message = this.message;
-    return (message != null) ? "Token Error: $message" : "Token Error";
+    return (message != null) ? 'Token Error: $message' : 'Token Error';
   }
 }

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 Future<MpesaResponse> processMpesaTransaction(String url,
     Map<String, String> headers, Map<String, dynamic> payload) async {
   try {
-    final http.Response _res = await http.post(Uri.parse(url),
+    final _res = await http.post(Uri.parse(url),
         headers: headers, body: json.encode(payload));
     dynamic _body;
     Map<String, dynamic>? _bodyAsmap;

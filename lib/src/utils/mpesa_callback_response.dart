@@ -126,6 +126,7 @@ class B2CCallBackResponse extends CommonCallBackResponse {
     }
   }
 
+  @override
   Map<String, dynamic> rawResponse = {};
 
   /// This is a JSON array within the ResultParameters that holds additional transaction details as JSON objects.
@@ -146,6 +147,7 @@ class ReversalCallBackResponse extends CommonCallBackResponse {
     }
   }
 
+  @override
   Map<String, dynamic> rawResponse = {};
 
   /// This is a JSON array within the ResultParameters that holds additional transaction details as JSON objects.
@@ -167,6 +169,7 @@ class TransactionStatusCallBackResponse extends CommonCallBackResponse {
     }
   }
 
+  @override
   Map<String, dynamic> rawResponse = {};
 
   /// This is a JSON array within the ResultParameters that holds additional transaction details as JSON objects.

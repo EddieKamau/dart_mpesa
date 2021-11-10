@@ -41,16 +41,16 @@ class MpesaB2c implements MpesaService {
   BcCommandId commandID;
 
   Map<String, dynamic> get payload => {
-        "InitiatorName": mpesa.initiatorName,
-        "SecurityCredential": mpesa.securityCredential,
-        "CommandID": commandID.enumValue,
-        "Amount": amount,
-        "PartyA": mpesa.shortCode,
-        "PartyB": phoneNumber,
-        "Remarks": remarks,
-        "QueueTimeOutURL": queueTimeOutURL,
-        "ResultURL": resultURL,
-        "Occassion": occassion
+        'InitiatorName': mpesa.initiatorName,
+        'SecurityCredential': mpesa.securityCredential,
+        'CommandID': commandID.enumValue,
+        'Amount': amount,
+        'PartyA': mpesa.shortCode,
+        'PartyB': phoneNumber,
+        'Remarks': remarks,
+        'QueueTimeOutURL': queueTimeOutURL,
+        'ResultURL': resultURL,
+        'Occassion': occassion
       };
 
   String get url => mpesa.applicationMode == ApplicationMode.production
@@ -67,7 +67,7 @@ class MpesaB2c implements MpesaService {
       rethrow;
     }
 
-    Map<String, String> headers = {
+    var headers = <String, String>{
       'content-type': 'application/json',
       'Authorization': 'Bearer ${_tokenRes["token"]}'
     };

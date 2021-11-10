@@ -58,13 +58,13 @@ class Mpesa {
   String? passKey;
 
   String get password {
-    final String _codeKeyDt = shortCode + passKey! + timestamp;
-    final List<int> _bytes = utf8.encode(_codeKeyDt);
+    final _codeKeyDt = shortCode + passKey! + timestamp;
+    final _bytes = utf8.encode(_codeKeyDt);
     return base64.encode(_bytes);
   }
 
   String get timestamp {
-    final DateTime _now = DateTime.now();
+    final _now = DateTime.now();
     return _now.year.toString() +
         _now.month.toString().padLeft(2, '0') +
         _now.day.toString().padLeft(2, '0') +

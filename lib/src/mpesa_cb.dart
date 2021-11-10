@@ -29,11 +29,11 @@ class MpesaC2BSimulation implements MpesaService {
   CbCommandID commandID;
 
   Map<String, dynamic> get payload => {
-        "ShortCode": mpesa.shortCode,
-        "CommandID": commandID.enumValue,
-        "Amount": amount,
-        "Msisdn": phoneNumber,
-        if (billRefNumber != null) "BillRefNumber": billRefNumber,
+        'ShortCode': mpesa.shortCode,
+        'CommandID': commandID.enumValue,
+        'Amount': amount,
+        'Msisdn': phoneNumber,
+        if (billRefNumber != null) 'BillRefNumber': billRefNumber,
       };
 
   String get url => mpesacbSimulationUrLTest;
@@ -48,7 +48,7 @@ class MpesaC2BSimulation implements MpesaService {
       rethrow;
     }
 
-    Map<String, String> headers = {
+    var headers = <String, String>{
       'content-type': 'application/json',
       'Authorization': 'Bearer ${_tokenRes["token"]}'
     };

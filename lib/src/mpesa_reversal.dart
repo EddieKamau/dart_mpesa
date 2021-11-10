@@ -35,17 +35,17 @@ class MpesaReversal implements MpesaService {
   String resultURL;
 
   Map<String, dynamic> get payload => {
-        "Initiator": mpesa.initiatorName,
-        "SecurityCredential": mpesa.securityCredential,
-        "CommandID": "TransactionReversal",
-        "RecieverIdentifierType": "11",
-        "TransactionID": transactionID,
-        "Amount": amount,
-        "ReceiverParty": mpesa.shortCode,
-        "Remarks": remarks,
-        "QueueTimeOutURL": queueTimeOutURL,
-        "ResultURL": resultURL,
-        "Occassion": occassion
+        'Initiator': mpesa.initiatorName,
+        'SecurityCredential': mpesa.securityCredential,
+        'CommandID': 'TransactionReversal',
+        'RecieverIdentifierType': '11',
+        'TransactionID': transactionID,
+        'Amount': amount,
+        'ReceiverParty': mpesa.shortCode,
+        'Remarks': remarks,
+        'QueueTimeOutURL': queueTimeOutURL,
+        'ResultURL': resultURL,
+        'Occassion': occassion
       };
 
   String get url => mpesa.applicationMode == ApplicationMode.production
@@ -62,7 +62,7 @@ class MpesaReversal implements MpesaService {
       rethrow;
     }
 
-    Map<String, String> headers = {
+    var headers = <String, String>{
       'content-type': 'application/json',
       'Authorization': 'Bearer ${_tokenRes["token"]}'
     };

@@ -1,6 +1,6 @@
 class MpesaResponse {
   MpesaResponse.fromMap(this.statusCode, this.rawResponse) {
-    responseCode = int.tryParse(rawResponse['ResponseCode'] ?? "");
+    responseCode = int.tryParse(rawResponse['ResponseCode'] ?? '');
     responseDescription = rawResponse['ResponseDescription'];
     conversationID = rawResponse['ConversationID'];
     originatorConversationID = rawResponse['OriginatorConversationID'];
@@ -17,9 +17,9 @@ class MpesaResponse {
     resultDesc = rawResponse['ResultDesc'];
 
     // error
-    requestId = rawResponse[''];// TODO
-    errorCode = rawResponse[''];
-    errorMessage = rawResponse[''];
+    requestId = rawResponse['requestId'];// TODO
+    errorCode = rawResponse['errorCode'];
+    errorMessage = rawResponse['errorMessage'];
   }
 
   // from http response

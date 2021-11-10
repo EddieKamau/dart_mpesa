@@ -13,10 +13,10 @@ class MpesaStkPushQuery implements MpesaService {
   String checkoutRequestID;
 
   Map<String, dynamic> get payload => {
-        "BusinessShortCode": mpesa.shortCode,
-        "Password": mpesa.password,
-        "Timestamp": mpesa.timestamp,
-        "CheckoutRequestID": checkoutRequestID,
+        'BusinessShortCode': mpesa.shortCode,
+        'Password': mpesa.password,
+        'Timestamp': mpesa.timestamp,
+        'CheckoutRequestID': checkoutRequestID,
       };
 
   String get url => mpesa.applicationMode == ApplicationMode.production
@@ -36,7 +36,7 @@ class MpesaStkPushQuery implements MpesaService {
       rethrow;
     }
 
-    Map<String, String> headers = {
+    var headers = <String, String>{
       'content-type': 'application/json',
       'Authorization': 'Bearer ${_tokenRes["token"]}'
     };

@@ -76,18 +76,18 @@ class MpesaB2B implements MpesaService {
   BbCommandId commandID = BbCommandId.BusinessToBusinessTransfer;
 
   Map<String, dynamic> get payload => {
-        "Initiator": mpesa.initiatorName,
-        "SecurityCredential": mpesa.securityCredential,
-        "CommandID": commandID.enumValue,
-        "SenderIdentifierType": "${mpesa.identifierType.value}",
-        "RecieverIdentifierType": "${identifierType.value}",
-        "Amount": amount,
-        "PartyA": mpesa.shortCode,
-        "PartyB": shortCode,
-        if (accountReference != null) "AccountReference": accountReference,
-        "Remarks": remarks,
-        "QueueTimeOutURL": queueTimeOutURL,
-        "ResultURL": resultURL,
+        'Initiator': mpesa.initiatorName,
+        'SecurityCredential': mpesa.securityCredential,
+        'CommandID': commandID.enumValue,
+        'SenderIdentifierType': '${mpesa.identifierType.value}',
+        'RecieverIdentifierType': '${identifierType.value}',
+        'Amount': amount,
+        'PartyA': mpesa.shortCode,
+        'PartyB': shortCode,
+        if (accountReference != null) 'AccountReference': accountReference,
+        'Remarks': remarks,
+        'QueueTimeOutURL': queueTimeOutURL,
+        'ResultURL': resultURL,
       };
 
   String get url => mpesa.applicationMode == ApplicationMode.production
@@ -104,7 +104,7 @@ class MpesaB2B implements MpesaService {
       rethrow;
     }
 
-    Map<String, String> headers = {
+    var headers = <String, String>{
       'content-type': 'application/json',
       'Authorization': 'Bearer ${_tokenRes["token"]}'
     };

@@ -23,14 +23,14 @@ class MpesaAccountBalance implements MpesaService {
   String resultURL;
 
   Map<String, dynamic> get payload => {
-        "Initiator": mpesa.initiatorName,
-        "SecurityCredential": mpesa.securityCredential,
-        "CommandID": "AccountBalance",
-        "IdentifierType": "${mpesa.identifierType.value}",
-        "PartyA": mpesa.shortCode,
-        "Remarks": remarks,
-        "QueueTimeOutURL": queueTimeOutURL,
-        "ResultURL": resultURL,
+        'Initiator': mpesa.initiatorName,
+        'SecurityCredential': mpesa.securityCredential,
+        'CommandID': 'AccountBalance',
+        'IdentifierType': '${mpesa.identifierType.value}',
+        'PartyA': mpesa.shortCode,
+        'Remarks': remarks,
+        'QueueTimeOutURL': queueTimeOutURL,
+        'ResultURL': resultURL,
       };
 
   String get url => mpesa.applicationMode == ApplicationMode.production
@@ -47,7 +47,7 @@ class MpesaAccountBalance implements MpesaService {
       rethrow;
     }
 
-    Map<String, String> headers = {
+    var headers = <String, String>{
       'content-type': 'application/json',
       'Authorization': 'Bearer ${_tokenRes["token"]}'
     };
