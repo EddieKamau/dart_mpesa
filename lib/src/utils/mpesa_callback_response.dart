@@ -1,3 +1,5 @@
+// ignore_for_file: omit_local_variable_types
+
 class MpesaStkCallBackResponse {
   MpesaStkCallBackResponse.fromMap(this.rawResponse) {
     resultDesc = rawResponse['Body']?['stkCallback']?['ResultDesc'];
@@ -10,7 +12,7 @@ class MpesaStkCallBackResponse {
     if (responseCode == 0 &&
         rawResponse['Body']?['stkCallback']?['CallbackMetadata'] != null) {
       callbackMetadata = CallbackMetadata.fromMap(
-          rawResponse['Body']?['stkCallback']?['CallbackMetadata']);
+          rawResponse['Body']?['stkCallback']?['CallbackMetadata'] ?? {});
     }
   }
 
@@ -38,7 +40,7 @@ class MpesaStkCallBackResponse {
 ///  This is the JSON object that holds more details for the transaction. It is only returned for Successful transaction.
 class CallbackMetadata {
   CallbackMetadata.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = rawResponse['Item'];
+    List<Map<String, dynamic>> _items = List.from(rawResponse['Item']);
     _items.forEach((element) {
       switch (element['Name']) {
         case 'Amount':
@@ -212,7 +214,7 @@ class CommonCallBackResponse {
 
 class ResultParameters {
   ResultParameters.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = rawResponse['ResultParameter'];
+    List<Map<String, dynamic>> _items = List.from(rawResponse['ResultParameter']);
 
     _items.forEach((element) {
       switch (element['Key']) {
@@ -274,7 +276,7 @@ class ResultParameters {
 
 class ReversalResultParameters {
   ReversalResultParameters.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = rawResponse['ResultParameter'];
+    List<Map<String, dynamic>> _items = List.from(rawResponse['ResultParameter']);
 
     _items.forEach((element) {
       switch (element['Key']) {
@@ -323,7 +325,7 @@ class ReversalResultParameters {
 
 class TransactionStatusResultParameters {
   TransactionStatusResultParameters.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = rawResponse['ResultParameter'];
+    List<Map<String, dynamic>> _items = List.from(rawResponse['ResultParameter']);
 
     _items.forEach((element) {
       switch (element['Key']) {
