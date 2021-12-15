@@ -53,7 +53,7 @@ class CallbackMetadata {
           balance = element['Value'];
           break;
         case 'TransactionDate':
-          transactionDate = element['Value'];
+          transactionDate = DateTime.tryParse(element['Value'].toString());
           break;
         case 'PhoneNumber':
           phoneNumber = element['Value'];
