@@ -44,19 +44,19 @@ class CallbackMetadata {
     _items.forEach((element) {
       switch (element['Name']) {
         case 'Amount':
-          amount = element['Value'];
+          amount = double.tryParse(element['Value'].toString());
           break;
         case 'MpesaReceiptNumber':
-          mpesaReceiptNumber = element['Value'];
+          mpesaReceiptNumber = element['Value']?.toString();
           break;
         case 'Balance':
-          balance = element['Value'];
+          balance = double.tryParse(element['Value'].toString());
           break;
         case 'TransactionDate':
           transactionDate = DateTime.tryParse(element['Value'].toString());
           break;
         case 'PhoneNumber':
-          phoneNumber = element['Value'];
+          phoneNumber = element['Value']?.toString();
           break;
         default:
       }
