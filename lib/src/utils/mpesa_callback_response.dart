@@ -42,19 +42,19 @@ class CallbackMetadata {
     _items.forEach((element) {
       switch (element['Name']) {
         case 'Amount':
-          amount = element['Value'];
+          amount = double.tryParse(element['Value'].toString());
           break;
         case 'MpesaReceiptNumber':
           mpesaReceiptNumber = element['Value'];
           break;
         case 'Balance':
-          balance = element['Value'];
+          balance = double.tryParse(element['Value'].toString());
           break;
         case 'TransactionDate':
           transactionDate = _dateParser(element['Value'].toString());
           break;
         case 'PhoneNumber':
-          phoneNumber = element['Value'];
+          phoneNumber = element['Value'].toString();
           break;
         default:
       }
@@ -89,7 +89,7 @@ class C2BValidation {
     businessShortCode = rawResponse['BusinessShortCode'];
     billRefNumber = rawResponse['BillRefNumber'];
     invoiceNumber = rawResponse['InvoiceNumber'];
-    orgAccountBalance = rawResponse['OrgAccountBalance'];
+    orgAccountBalance = double.tryParse(rawResponse['OrgAccountBalance'].toString());
     thirdPartyTransID = rawResponse['ThirdPartyTransID'];
     mSISDN = rawResponse['MSISDN'];
     firstName = rawResponse['FirstName'];
@@ -217,19 +217,19 @@ class ResultParameters {
     _items.forEach((element) {
       switch (element['Key']) {
         case 'TransactionAmount':
-          transactionAmount = element['Value'];
+          transactionAmount = double.tryParse(element['Value'].toString());
           break;
         case 'TransactionReceipt':
           transactionReceipt = element['Value'];
           break;
         case 'B2CWorkingAccountAvailableFunds':
-          b2CWorkingAccountAvailableFunds = element['Value'];
+          b2CWorkingAccountAvailableFunds = double.tryParse(element['Value'].toString());
           break;
         case 'B2CUtilityAccountAvailableFunds':
-          b2CUtilityAccountAvailableFunds = element['Value'];
+          b2CUtilityAccountAvailableFunds = double.tryParse(element['Value'].toString());
           break;
         case 'B2CChargesPaidAccountAvailableFunds':
-          b2CChargesPaidAccountAvailableFunds = element['Value'];
+          b2CChargesPaidAccountAvailableFunds = double.tryParse(element['Value'].toString());
           break;
         case 'B2CRecipientIsRegisteredCustomer':
           b2CRecipientIsRegisteredCustomer = element['Value'];
@@ -282,7 +282,7 @@ class ReversalResultParameters {
           debitAccountBalance = element['Value'];
           break;
         case 'Amount':
-          amount = element['Value'];
+          amount = double.tryParse(element['Value'].toString());
           break;
         case 'TransCompletedTime':
           transCompletedTime = _dateParser(element['Value'].toString());
@@ -291,7 +291,7 @@ class ReversalResultParameters {
           originalTransactionID = element['Value'];
           break;
         case 'Charge':
-          charge = element['Value'];
+          charge = double.tryParse(element['Value'].toString());
           break;
         case 'CreditPartyPublicName':
           creditPartyPublicName = element['Value'];
@@ -328,10 +328,10 @@ class TransactionStatusResultParameters {
     _items.forEach((element) {
       switch (element['Key']) {
         case 'DebitPartyCharges':
-          debitPartyCharges = element['Value'];
+          debitPartyCharges = element['Value']?.toString();
           break;
         case 'Amount':
-          amount = element['Value'];
+          amount = double.tryParse(element['Value'].toString());
           break;
         case 'InitiatedTime':
           initiatedTime = _dateParser(element['Value'].toString());
@@ -340,31 +340,31 @@ class TransactionStatusResultParameters {
           finalisedTime = _dateParser(element['Value'].toString());
           break;
         case 'ConversationID':
-          conversationID = element['Value'];
+          conversationID = element['Value']?.toString();
           break;
         case 'ReceiptNo':
-          receiptNo = element['Value'];
+          receiptNo = element['Value']?.toString();
           break;
         case 'CreditPartyPublicName':
-          creditPartyPublicName = element['Value'];
+          creditPartyPublicName = element['Value']?.toString();
           break;
         case 'DebitPartyPublicName':
-          debitPartyPublicName = element['Value'];
+          debitPartyPublicName = element['Value']?.toString();
           break;
         case 'TransactionStatus':
-          transactionStatus = element['Value'];
+          transactionStatus = element['Value']?.toString();
           break;
         case 'ReasonType':
-          reasonType = element['Value'];
+          reasonType = element['Value']?.toString();
           break;
         case 'TransactionReason':
-          transactionReason = element['Value'];
+          transactionReason = element['Value']?.toString();
           break;
         case 'DebitAccountType':
-          debitAccountType = element['Value'];
+          debitAccountType = element['Value']?.toString();
           break;
         case 'OriginatorConversationID':
-          originatorConversationID = element['Value'];
+          originatorConversationID = element['Value']?.toString();
           break;
         default:
       }
