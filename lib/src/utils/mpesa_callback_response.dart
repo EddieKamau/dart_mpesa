@@ -1,5 +1,3 @@
-// ignore_for_file: omit_local_variable_types
-
 class MpesaStkCallBackResponse {
   MpesaStkCallBackResponse.fromMap(this.rawResponse) {
     resultDesc = rawResponse['Body']?['stkCallback']?['ResultDesc'];
@@ -12,7 +10,7 @@ class MpesaStkCallBackResponse {
     if (responseCode == 0 &&
         rawResponse['Body']?['stkCallback']?['CallbackMetadata'] != null) {
       callbackMetadata = CallbackMetadata.fromMap(
-          rawResponse['Body']?['stkCallback']?['CallbackMetadata'] ?? {});
+          rawResponse['Body']?['stkCallback']?['CallbackMetadata']);
     }
   }
 
@@ -44,19 +42,19 @@ class CallbackMetadata {
     _items.forEach((element) {
       switch (element['Name']) {
         case 'Amount':
-          amount = double.tryParse(element['Value'].toString());
+          amount = element['Value'];
           break;
         case 'MpesaReceiptNumber':
-          mpesaReceiptNumber = element['Value']?.toString();
+          mpesaReceiptNumber = element['Value'];
           break;
         case 'Balance':
-          balance = double.tryParse(element['Value'].toString());
+          balance = element['Value'];
           break;
         case 'TransactionDate':
-          transactionDate = DateTime.tryParse(element['Value'].toString());
+          transactionDate = _dateParser(element['Value'].toString());
           break;
         case 'PhoneNumber':
-          phoneNumber = element['Value']?.toString();
+          phoneNumber = element['Value'];
           break;
         default:
       }
@@ -237,7 +235,7 @@ class ResultParameters {
           b2CRecipientIsRegisteredCustomer = element['Value'];
           break;
         case 'TransactionCompletedDateTime':
-          transactionCompletedDateTime = element['Value'];
+          transactionCompletedDateTime = _dateParser(element['Value'].toString());
           break;
         case 'ReceiverPartyPublicName':
           receiverPartyPublicName = element['Value'];
@@ -287,7 +285,7 @@ class ReversalResultParameters {
           amount = element['Value'];
           break;
         case 'TransCompletedTime':
-          transCompletedTime = element['Value'];
+          transCompletedTime = _dateParser(element['Value'].toString());
           break;
         case 'OriginalTransactionID':
           originalTransactionID = element['Value'];
@@ -336,10 +334,10 @@ class TransactionStatusResultParameters {
           amount = element['Value'];
           break;
         case 'InitiatedTime':
-          initiatedTime = element['Value'];
+          initiatedTime = _dateParser(element['Value'].toString());
           break;
         case 'FinalisedTime':
-          finalisedTime = element['Value'];
+          finalisedTime = _dateParser(element['Value'].toString());
           break;
         case 'ConversationID':
           conversationID = element['Value'];
@@ -409,4 +407,21 @@ class ReferenceData {
   Map<String, dynamic> rawResponse = {};
 
   String? referenceItem;
+}
+
+DateTime _dateParser(String val){
+  try{
+    var _list = val.split("");
+    var _dt = "${_list.sublist(0, 4).join()}-"; // year
+    _dt = "$_dt${_list.sublist(4, 6).join()}-"; // month
+    _dt = "$_dt${_list.sublist(6, 8).join()} "; // day
+    _dt = "$_dt${_list.sublist(8, 10).join()}:"; // hour
+    _dt = "$_dt${_list.sublist(10, 12).join()}:"; // min
+    _dt = "$_dt${_list.sublist(12, 14).join()}"; // hour
+
+    return DateTime.parse(_dt);
+  } catch(e){
+    return DateTime.now();
+  }
+  
 }
