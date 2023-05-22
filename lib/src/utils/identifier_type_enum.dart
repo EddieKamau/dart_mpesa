@@ -13,4 +13,15 @@ extension IdentifierTypeValue on IdentifierType {
         return 1;
     }
   }
+
+  String get transactionType {
+    switch (this) {
+      case IdentifierType.TillNumber:
+        return 'CustomerBuyGoodsOnline';
+      case IdentifierType.OrganizationShortCode:
+        return 'CustomerPayBillOnline';
+      default:
+        return 'CustomerPayBillOnline';
+    }
+  }
 }
