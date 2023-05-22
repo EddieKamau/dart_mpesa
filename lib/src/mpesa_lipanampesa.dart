@@ -34,7 +34,7 @@ class MpesaLipanaMpesa implements MpesaService {
         'BusinessShortCode': mpesa.shortCode,
         'Password': mpesa.password,
         'Timestamp': mpesa.timestamp,
-        'TransactionType': 'CustomerPayBillOnline',
+        'TransactionType': mpesa.identifierType.transactionType,
         'Amount': amount,
         'PartyA': phoneNumber,
         'PartyB': mpesa.shortCode,

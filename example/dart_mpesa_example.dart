@@ -1,6 +1,4 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
-import 'package:dart_mpesa/src/mpesa_bb.dart';
-import 'package:dart_mpesa/src/mpesa_bc.dart';
 
 void main() async {
   var mpesa = Mpesa(

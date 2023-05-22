@@ -14,7 +14,7 @@ import 'package:dart_mpesa/src/mpesa_reversal.dart';
 import 'package:dart_mpesa/src/mpesa_stkpush_query.dart';
 import 'package:dart_mpesa/src/mpesa_transaction_status.dart';
 import 'package:dart_mpesa/src/utils/fetch_token.dart';
-import 'package:dart_mpesa/src/utils/identifierType_enum.dart';
+import 'package:dart_mpesa/src/utils/identifier_type_enum.dart';
 import 'package:dart_mpesa/src/utils/mpesa_response.dart';
 
 export 'package:dart_mpesa/src/utils/mpesa_response.dart';
@@ -23,7 +23,7 @@ export 'package:dart_mpesa/src/mpesa_service_shell.dart';
 export 'package:dart_mpesa/src/utils/urls.dart';
 export 'package:dart_mpesa/src/utils/fetch_token.dart';
 export 'package:dart_mpesa/src/utils/process_mpesa_post_transaction.dart';
-export 'package:dart_mpesa/src/utils/identifierType_enum.dart';
+export 'package:dart_mpesa/src/utils/identifier_type_enum.dart';
 export 'package:dart_mpesa/src/mpesa_bc.dart';
 export 'package:dart_mpesa/src/mpesa_bb.dart';
 export 'package:dart_mpesa/src/mpesa_cb.dart';
@@ -220,6 +220,7 @@ class Mpesa {
   /// [resultURL] This is the URL to be specified in your request that will be used by M-PESA to send notification upon processing of the payment request.
   Future<MpesaResponse> reversalTransaction({
     required String transactionID,
+    IdentifierType? identifierType,
     required double amount,
     required String remarks,
     required String occassion,
@@ -229,6 +230,7 @@ class Mpesa {
     var _revers = MpesaReversal(
       this,
       transactionID: transactionID,
+      identifierType: identifierType ?? this.identifierType,
       amount: amount,
       remarks: remarks,
       occassion: occassion,
@@ -242,6 +244,7 @@ class Mpesa {
   // transaction status
   /// Check the status of a transaction
   /// [transactionID] This is the Mpesa Transaction ID of the transaction which you wish to reverse.
+  /// [originatorConversationID] This is a global unique identifier for the transaction request returned by the API proxy upon successful request submission. If you don’t have the M-PESA transaction ID you can use this to query.
   /// [identifierType] Type of organization receiving the transaction (MSISDN, TillNumber, OrganizationShortCode)
   /// [occassion] Any additional information to be associated with the transaction. Sentence of upto 100 characters
   /// [remarks] Comments that are sent along with the transaction. Sentence of up to 100 characters
@@ -249,6 +252,7 @@ class Mpesa {
   /// [resultURL] This is the URL to be specified in your request that will be used by M-PESA to send notification upon processing of the payment request.
   Future<MpesaResponse> transactionStatus({
     required String transactionID,
+    String? originatorConversationID,
     required IdentifierType identifierType,
     required String remarks,
     required String occassion,
@@ -258,6 +262,7 @@ class Mpesa {
     var _status = MpesaTransactionStatus(
       this,
       transactionID: transactionID,
+      originatorConversationID: originatorConversationID ?? transactionID,
       identifierType: identifierType,
       remarks: remarks,
       occassion: occassion,

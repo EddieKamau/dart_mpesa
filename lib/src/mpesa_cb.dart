@@ -1,5 +1,4 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
-import 'package:enum_object/enum_object.dart';
 
 /// Make payment requests from Client to Business (C2B). Simulate is available on sandbox only
 class MpesaC2BSimulation implements MpesaService {
@@ -30,7 +29,7 @@ class MpesaC2BSimulation implements MpesaService {
 
   Map<String, dynamic> get payload => {
         'ShortCode': mpesa.shortCode,
-        'CommandID': commandID.enumValue,
+        'CommandID': commandID.name,
         'Amount': amount,
         'Msisdn': phoneNumber,
         if (billRefNumber != null) 'BillRefNumber': billRefNumber,

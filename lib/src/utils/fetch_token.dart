@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dart_mpesa/dart_mpesa.dart';
-import 'package:dart_mpesa/src/utils/urls.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> fetchMpesaToken(String username, String password,

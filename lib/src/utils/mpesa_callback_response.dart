@@ -38,7 +38,7 @@ class MpesaStkCallBackResponse {
 ///  This is the JSON object that holds more details for the transaction. It is only returned for Successful transaction.
 class CallbackMetadata {
   CallbackMetadata.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = List.from(rawResponse['Item']);
+    var _items = List<Map<String, dynamic>>.from(rawResponse['Item']);
     _items.forEach((element) {
       switch (element['Name']) {
         case 'Amount':
@@ -89,7 +89,8 @@ class C2BValidation {
     businessShortCode = rawResponse['BusinessShortCode'];
     billRefNumber = rawResponse['BillRefNumber'];
     invoiceNumber = rawResponse['InvoiceNumber'];
-    orgAccountBalance = double.tryParse(rawResponse['OrgAccountBalance'].toString());
+    orgAccountBalance =
+        double.tryParse(rawResponse['OrgAccountBalance'].toString());
     thirdPartyTransID = rawResponse['ThirdPartyTransID'];
     mSISDN = rawResponse['MSISDN'];
     firstName = rawResponse['FirstName'];
@@ -212,7 +213,8 @@ class CommonCallBackResponse {
 
 class ResultParameters {
   ResultParameters.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = List.from(rawResponse['ResultParameter']);
+    var _items =
+        List<Map<String, dynamic>>.from(rawResponse['ResultParameter']);
 
     _items.forEach((element) {
       switch (element['Key']) {
@@ -223,19 +225,23 @@ class ResultParameters {
           transactionReceipt = element['Value'];
           break;
         case 'B2CWorkingAccountAvailableFunds':
-          b2CWorkingAccountAvailableFunds = double.tryParse(element['Value'].toString());
+          b2CWorkingAccountAvailableFunds =
+              double.tryParse(element['Value'].toString());
           break;
         case 'B2CUtilityAccountAvailableFunds':
-          b2CUtilityAccountAvailableFunds = double.tryParse(element['Value'].toString());
+          b2CUtilityAccountAvailableFunds =
+              double.tryParse(element['Value'].toString());
           break;
         case 'B2CChargesPaidAccountAvailableFunds':
-          b2CChargesPaidAccountAvailableFunds = double.tryParse(element['Value'].toString());
+          b2CChargesPaidAccountAvailableFunds =
+              double.tryParse(element['Value'].toString());
           break;
         case 'B2CRecipientIsRegisteredCustomer':
           b2CRecipientIsRegisteredCustomer = element['Value'];
           break;
         case 'TransactionCompletedDateTime':
-          transactionCompletedDateTime = _dateParser(element['Value'].toString());
+          transactionCompletedDateTime =
+              _dateParser(element['Value'].toString());
           break;
         case 'ReceiverPartyPublicName':
           receiverPartyPublicName = element['Value'];
@@ -274,7 +280,8 @@ class ResultParameters {
 
 class ReversalResultParameters {
   ReversalResultParameters.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = List.from(rawResponse['ResultParameter']);
+    var _items =
+        List<Map<String, dynamic>>.from(rawResponse['ResultParameter']);
 
     _items.forEach((element) {
       switch (element['Key']) {
@@ -323,7 +330,8 @@ class ReversalResultParameters {
 
 class TransactionStatusResultParameters {
   TransactionStatusResultParameters.fromMap(this.rawResponse) {
-    List<Map<String, dynamic>> _items = List.from(rawResponse['ResultParameter']);
+    var _items =
+        List<Map<String, dynamic>>.from(rawResponse['ResultParameter']);
 
     _items.forEach((element) {
       switch (element['Key']) {
@@ -409,19 +417,18 @@ class ReferenceData {
   String? referenceItem;
 }
 
-DateTime _dateParser(String val){
-  try{
-    var _list = val.split("");
-    var _dt = "${_list.sublist(0, 4).join()}-"; // year
-    _dt = "$_dt${_list.sublist(4, 6).join()}-"; // month
-    _dt = "$_dt${_list.sublist(6, 8).join()} "; // day
-    _dt = "$_dt${_list.sublist(8, 10).join()}:"; // hour
-    _dt = "$_dt${_list.sublist(10, 12).join()}:"; // min
-    _dt = "$_dt${_list.sublist(12, 14).join()}"; // hour
+DateTime _dateParser(String val) {
+  try {
+    var _list = val.split('');
+    var _dt = '${_list.sublist(0, 4).join()}-'; // year
+    _dt = '$_dt${_list.sublist(4, 6).join()}-'; // month
+    _dt = '$_dt${_list.sublist(6, 8).join()} '; // day
+    _dt = '$_dt${_list.sublist(8, 10).join()}:'; // hour
+    _dt = '$_dt${_list.sublist(10, 12).join()}:'; // min
+    _dt = '$_dt${_list.sublist(12, 14).join()}'; // hour
 
     return DateTime.parse(_dt);
-  } catch(e){
+  } catch (e) {
     return DateTime.now();
   }
-  
 }

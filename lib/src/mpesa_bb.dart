@@ -1,5 +1,4 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
-import 'package:enum_object/enum_object.dart';
 
 /// The Business to Business (B2B) API is used to transfer money from one business to another business.
 /// This API enables the business to pay other businesses.
@@ -78,7 +77,7 @@ class MpesaB2B implements MpesaService {
   Map<String, dynamic> get payload => {
         'Initiator': mpesa.initiatorName,
         'SecurityCredential': mpesa.securityCredential,
-        'CommandID': commandID.enumValue,
+        'CommandID': commandID.name,
         'SenderIdentifierType': '${mpesa.identifierType.value}',
         'RecieverIdentifierType': '${identifierType.value}',
         'Amount': amount,

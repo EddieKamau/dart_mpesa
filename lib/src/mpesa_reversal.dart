@@ -5,6 +5,7 @@ class MpesaReversal implements MpesaService {
   MpesaReversal(
     this.mpesa, {
     required this.transactionID,
+    required this.identifierType,
     required this.amount,
     required this.remarks,
     required this.occassion,
@@ -19,6 +20,9 @@ class MpesaReversal implements MpesaService {
 
   /// This is the Mpesa Transaction ID of the transaction which you wish to reverse.
   String transactionID;
+
+  /// Organization Receiving the funds.
+  IdentifierType identifierType;
 
   /// Any additional information to be associated with the transaction.
   /// Sentence of up to 100 characters
@@ -38,7 +42,7 @@ class MpesaReversal implements MpesaService {
         'Initiator': mpesa.initiatorName,
         'SecurityCredential': mpesa.securityCredential,
         'CommandID': 'TransactionReversal',
-        'RecieverIdentifierType': '11',
+        'RecieverIdentifierType': identifierType.value,
         'TransactionID': transactionID,
         'Amount': amount,
         'ReceiverParty': mpesa.shortCode,

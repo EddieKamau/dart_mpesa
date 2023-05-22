@@ -1,5 +1,4 @@
 import 'package:dart_mpesa/dart_mpesa.dart';
-import 'package:enum_object/enum_object.dart';
 
 /// B2C API is an API used to make payments from a Business to Customers (Pay Outs). Also known as Bulk Disbursements. B2C API is used in several scenarios by businesses that require to either make Salary Payments, Cashback payments, Promotional Payments(e.g. betting winning payouts), winnings, financial institutions withdrawal of funds, loan disbursements etc.
 class MpesaB2c implements MpesaService {
@@ -43,7 +42,7 @@ class MpesaB2c implements MpesaService {
   Map<String, dynamic> get payload => {
         'InitiatorName': mpesa.initiatorName,
         'SecurityCredential': mpesa.securityCredential,
-        'CommandID': commandID.enumValue,
+        'CommandID': commandID.name,
         'Amount': amount,
         'PartyA': mpesa.shortCode,
         'PartyB': phoneNumber,

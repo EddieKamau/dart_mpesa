@@ -11,22 +11,22 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="../../static-assets/github.css">
-  <link rel="stylesheet" href="../../static-assets/styles.css">
-  <link rel="icon" href="../../static-assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
 
   
 </head>
 
 
-<body data-base-href="../../"
-      data-using-base-href="false">
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
-  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">dart_mpesa</a></li>
     <li><a href="../../dart_mpesa/dart_mpesa-library.html">dart_mpesa</a></li>
@@ -37,10 +37,45 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
 </header>
-
 <main>
 
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-property">identifierType</span> property 
+</h1></div>
+
+        <section class="multi-line-signature">
+          
+          <a href="../../dart_mpesa/IdentifierType.html">IdentifierType</a>
+          <span class="name ">identifierType</span>
+          <div class="features"><span class="feature">read / write</span></div>
+
+        </section>
+        
+<section class="desc markdown">
+  <p>Type of organization</p>
+</section>
+
+        
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">IdentifierType identifierType = IdentifierType.OrganizationShortCode;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
@@ -60,43 +95,44 @@
     <h5>Mpesa class</h5>
     <ol>
 
-    <li class="section-title"><a href="../../dart_mpesa/Mpesa-class.html#constructors">Constructors</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/Mpesa.html">Mpesa</a></li>
+        <li class="section-title"><a href="../../dart_mpesa/Mpesa-class.html#constructors">Constructors</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/Mpesa.html">Mpesa</a></li>
 
 
-    <li class="section-title">
-      <a href="../../dart_mpesa/Mpesa-class.html#instance-properties">Properties</a>
-    </li>
-    <li><a href="../../dart_mpesa/Mpesa/applicationMode.html">applicationMode</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/consumerKey.html">consumerKey</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/consumerSecret.html">consumerSecret</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/fetchToken.html">fetchToken</a></li>
-    <li class="inherited"><a href="https://api.dart.dev/stable/2.13.1/dart-core/Object/hashCode.html">hashCode</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/identifierType.html">identifierType</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/initiatorName.html">initiatorName</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/passKey.html">passKey</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/password.html">password</a></li>
-    <li class="inherited"><a href="https://api.dart.dev/stable/2.13.1/dart-core/Object/runtimeType.html">runtimeType</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/securityCredential.html">securityCredential</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/shortCode.html">shortCode</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/timestamp.html">timestamp</a></li>
+        <li class="section-title">
+          <a href="../../dart_mpesa/Mpesa-class.html#instance-properties">Properties</a>
+        </li>
+          <li><a href="../../dart_mpesa/Mpesa/applicationMode.html">applicationMode</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/consumerKey.html">consumerKey</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/consumerSecret.html">consumerSecret</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/fetchToken.html">fetchToken</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/beta/3.1.0-63.1.beta/dart-core/Object/hashCode.html">hashCode</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/identifierType.html">identifierType</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/initiatorName.html">initiatorName</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/passKey.html">passKey</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/password.html">password</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/beta/3.1.0-63.1.beta/dart-core/Object/runtimeType.html">runtimeType</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/securityCredential.html">securityCredential</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/shortCode.html">shortCode</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/timestamp.html">timestamp</a></li>
 
-    <li class="section-title"><a href="../../dart_mpesa/Mpesa-class.html#instance-methods">Methods</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/accountBalance.html">accountBalance</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/b2bBuyGoodsTransaction.html">b2bBuyGoodsTransaction</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/b2bPaybillTransaction.html">b2bPaybillTransaction</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/b2bTransaction.html">b2bTransaction</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/b2cTransaction.html">b2cTransaction</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/c2bOnlineSimulation.html">c2bOnlineSimulation</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/lipanaMpesaOnline.html">lipanaMpesaOnline</a></li>
-    <li class="inherited"><a href="https://api.dart.dev/stable/2.13.1/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/reversalTransaction.html">reversalTransaction</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/stkPushQuery.html">stkPushQuery</a></li>
-    <li class="inherited"><a href="https://api.dart.dev/stable/2.13.1/dart-core/Object/toString.html">toString</a></li>
-    <li><a href="../../dart_mpesa/Mpesa/transactionStatus.html">transactionStatus</a></li>
+        <li class="section-title"><a href="../../dart_mpesa/Mpesa-class.html#instance-methods">Methods</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/accountBalance.html">accountBalance</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/b2bBuyGoodsTransaction.html">b2bBuyGoodsTransaction</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/b2bPaybillTransaction.html">b2bPaybillTransaction</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/b2bTransaction.html">b2bTransaction</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/b2cTransaction.html">b2cTransaction</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/c2bOnlineSimulation.html">c2bOnlineSimulation</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/c2bRegisterUrl.html">c2bRegisterUrl</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/lipanaMpesaOnline.html">lipanaMpesaOnline</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/beta/3.1.0-63.1.beta/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/reversalTransaction.html">reversalTransaction</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/stkPushQuery.html">stkPushQuery</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/beta/3.1.0-63.1.beta/dart-core/Object/toString.html">toString</a></li>
+          <li><a href="../../dart_mpesa/Mpesa/transactionStatus.html">transactionStatus</a></li>
 
-    <li class="section-title inherited"><a href="../../dart_mpesa/Mpesa-class.html#operators">Operators</a></li>
-    <li class="inherited"><a href="https://api.dart.dev/stable/2.13.1/dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title inherited"><a href="../../dart_mpesa/Mpesa-class.html#operators">Operators</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/beta/3.1.0-63.1.beta/dart-core/Object/operator_equals.html">operator ==</a></li>
 
 
 
@@ -104,34 +140,6 @@
 </ol>
 
   </div><!--/.sidebar-offcanvas-->
-
-  <div id="dartdoc-main-content" class="main-content">
-      <div>
-<h1><span class="kind-property">identifierType</span> property 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
-</h1></div>
-
-        <section class="multi-line-signature">
-          <a href="../../dart_mpesa/IdentifierType-class.html">IdentifierType</a>
-          <span class="name ">identifierType</span>
-          <div class="features">read / write</div>
-
-        </section>
-        
-<section class="desc markdown">
-  <p>Type of organization</p>
-</section>
-
-        
-<section class="summary source-code" id="source">
-  <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">IdentifierType identifierType = IdentifierType.OrganizationShortCode;
-
-</code></pre>
-</section>
-
-
-  </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
@@ -141,15 +149,16 @@
 <footer>
   <span class="no-break">
     dart_mpesa
-      1.0.0
+      2.0.0
   </span>
 
   
 </footer>
 
 
-<script src="../../static-assets/highlight.pack.js"></script>
-<script src="../../static-assets/script.js"></script>
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
 
 
 

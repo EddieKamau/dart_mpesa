@@ -1,5 +1,6 @@
+@Timeout(Duration(seconds: 145))
+
 import 'package:dart_mpesa/dart_mpesa.dart';
-import 'package:dart_mpesa/src/mpesa_bb.dart';
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -97,6 +98,7 @@ class MockMpesa extends Mock implements Mpesa {
   @override
   Future<MpesaResponse> reversalTransaction(
       {required String transactionID,
+      IdentifierType? identifierType,
       required double amount,
       required String remarks,
       required String occassion,
@@ -108,6 +110,7 @@ class MockMpesa extends Mock implements Mpesa {
   @override
   Future<MpesaResponse> transactionStatus(
       {required String transactionID,
+      String? originatorConversationID,
       required IdentifierType identifierType,
       required String remarks,
       required String occassion,
@@ -118,59 +121,172 @@ class MockMpesa extends Mock implements Mpesa {
 }
 
 void main() {
-  group('mpesa', () {
-    final mpesa = MockMpesa();
+  // group('mpesa', () {
+  //   final mpesa = MockMpesa();
 
-    setUp(() {
-      // Additional setup goes here.
-    });
+  //   setUp(() {
+  //     // Additional setup goes here.
+  //   });
+
+  //   test('b2b', () async {
+  //     expect(
+  //         (await mpesa.b2bTransaction(
+  //                 shortCode: '',
+  //                 amount: 0,
+  //                 remarks: '',
+  //                 queueTimeOutURL: '',
+  //                 resultURL: '',
+  //                 identifierType: IdentifierType.OrganizationShortCode,
+  //                 commandID: BbCommandId.BusinessToBusinessTransfer))
+  //             .statusCode,
+  //         200);
+  //   });
+
+  //   test('lipa na mpesa', () async {
+  //     expect(
+  //         (await mpesa.lipanaMpesaOnline(
+  //                 phoneNumber: '',
+  //                 amount: 0,
+  //                 accountReference: '',
+  //                 transactionDesc: '',
+  //                 callBackURL: 'callBackURL'))
+  //             .merchantRequestID,
+  //         '29115-34620561-1');
+  //   });
+
+  //   test('account balance', () async {
+  //     expect(
+  //         (await mpesa.accountBalance(
+  //                 remarks: 'remarks', queueTimeOutURL: '', resultURL: ''))
+  //             .conversationID,
+  //         'AG_20191219_00005797af5d7d75f652');
+  //   });
+
+  //   test('b2b error', () async {
+  //     expect(
+  //         (await mpesa.b2bTransaction(
+  //                 shortCode: '',
+  //                 amount: 0,
+  //                 remarks: '',
+  //                 queueTimeOutURL: '',
+  //                 resultURL: '',
+  //                 identifierType: IdentifierType.TillNumber,
+  //                 commandID: BbCommandId.MerchantToMerchantTransfer))
+  //             .statusCode,
+  //         400);
+  //   });
+  // });
+
+  group('sandbox test', () {
+    late final Mpesa mpesa;
+    late final Mpesa lipaNaMpesa;
+
+    late String queueTimeOutURL;
+    late String resultURL;
+
+    MpesaResponse? lipaRes;
+    MpesaResponse? b2cRes;
+
+    queueTimeOutURL = 'https://darajambili.herokuapp.com/b2c/timeout';
+    resultURL = 'https://darajambili.herokuapp.com/b2c/result';
+
+    mpesa = Mpesa(
+      consumerKey: '',
+      consumerSecret: '',
+      shortCode: '600977',
+      initiatorName: 'testapi',
+      securityCredential: '',
+      applicationMode: ApplicationMode.test,
+    );
+    lipaNaMpesa = Mpesa(
+      consumerKey: '',
+      consumerSecret: '',
+      shortCode: '174379',
+      passKey: '',
+      applicationMode: ApplicationMode.test,
+    );
+
+    setUp(() {});
 
     test('b2b', () async {
       expect(
           (await mpesa.b2bTransaction(
-                  shortCode: '',
-                  amount: 0,
-                  remarks: '',
-                  queueTimeOutURL: '',
-                  resultURL: '',
+                  shortCode: '600000',
+                  amount: 1000,
+                  remarks: 'Test',
+                  queueTimeOutURL: queueTimeOutURL,
+                  resultURL: resultURL,
                   identifierType: IdentifierType.OrganizationShortCode,
                   commandID: BbCommandId.BusinessToBusinessTransfer))
               .statusCode,
           200);
     });
+    test('b2c', () async {
+      b2cRes = await mpesa.b2cTransaction(
+          phoneNumber: '254708374149',
+          amount: 1000,
+          remarks: 'Test',
+          occassion: 'Test',
+          queueTimeOutURL: queueTimeOutURL,
+          resultURL: resultURL,
+          commandID: BcCommandId.BusinessPayment);
+      expect(b2cRes?.statusCode, 200);
+    });
 
-    test('lipa na mpesa', () async {
+    test('Transaction Status', () async {
       expect(
-          (await mpesa.lipanaMpesaOnline(
-                  phoneNumber: '',
-                  amount: 0,
-                  accountReference: '',
-                  transactionDesc: '',
-                  callBackURL: 'callBackURL'))
-              .merchantRequestID,
-          '29115-34620561-1');
+          (await mpesa.transactionStatus(
+                  transactionID: 'NEF61H8J60',
+                  originatorConversationID: b2cRes?.originatorConversationID,
+                  identifierType: mpesa.identifierType,
+                  remarks: 'test',
+                  occassion: 'test',
+                  queueTimeOutURL: queueTimeOutURL,
+                  resultURL: resultURL))
+              .statusCode,
+          200);
     });
 
     test('account balance', () async {
       expect(
           (await mpesa.accountBalance(
-                  remarks: 'remarks', queueTimeOutURL: '', resultURL: ''))
-              .conversationID,
-          'AG_20191219_00005797af5d7d75f652');
+                  remarks: 'remarks',
+                  queueTimeOutURL: queueTimeOutURL,
+                  resultURL: resultURL))
+              .statusCode,
+          200);
     });
 
-    test('b2b error', () async {
+    test('reversal', () async {
+      final res = (await mpesa.reversalTransaction(
+        transactionID: 'NEF61H8J60',
+        amount: 100,
+        remarks: 'test',
+        occassion: 'test',
+        queueTimeOutURL: queueTimeOutURL,
+        resultURL: resultURL,
+      ));
+      expect(res.statusCode, 200);
+    });
+
+    test('lipa na mpesa', () async {
+      lipaRes = await lipaNaMpesa.lipanaMpesaOnline(
+          phoneNumber: '254708374149',
+          amount: 100,
+          accountReference: 'test',
+          transactionDesc: 'test',
+          callBackURL: resultURL);
+
+      expect(lipaRes?.statusCode, 200);
+    });
+
+    test('lipa na mpesa query', () async {
+      await Future.delayed(const Duration(seconds: 20));
       expect(
-          (await mpesa.b2bTransaction(
-                  shortCode: '',
-                  amount: 0,
-                  remarks: '',
-                  queueTimeOutURL: '',
-                  resultURL: '',
-                  identifierType: IdentifierType.TillNumber,
-                  commandID: BbCommandId.MerchantToMerchantTransfer))
+          (await lipaNaMpesa.stkPushQuery(
+                  checkoutRequestID: lipaRes?.checkoutRequestID ?? 'test'))
               .statusCode,
-          400);
+          200);
     });
   });
 }

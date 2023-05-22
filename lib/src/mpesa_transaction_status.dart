@@ -5,6 +5,7 @@ class MpesaTransactionStatus implements MpesaService {
   MpesaTransactionStatus(
     this.mpesa, {
     required this.transactionID,
+    required this.originatorConversationID,
     required this.identifierType,
     required this.remarks,
     required this.occassion,
@@ -19,6 +20,9 @@ class MpesaTransactionStatus implements MpesaService {
 
   /// This is the Mpesa Transaction ID of the transaction which you wish to reverse.
   String transactionID;
+
+  /// This is a global unique identifier for the transaction request returned by the API proxy upon successful request submission. If you don’t have the M-PESA transaction ID you can use this to query.
+  String originatorConversationID;
 
   /// Any additional information to be associated with the transaction.
   /// Sentence of up to 100 characters
@@ -40,6 +44,7 @@ class MpesaTransactionStatus implements MpesaService {
         'CommandID': 'TransactionStatusQuery',
         'IdentifierType': identifierType.value,
         'TransactionID': transactionID,
+        'OriginatorConversationID': originatorConversationID,
         'PartyA': mpesa.shortCode,
         'Remarks': remarks,
         'QueueTimeOutURL': queueTimeOutURL,
