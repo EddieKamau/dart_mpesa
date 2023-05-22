@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Map<String, dynamic> representation of call back responses
+
 ## 2.0.1
 
 - Upgraded required dart sdk to 3+

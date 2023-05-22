@@ -77,6 +77,14 @@ class CallbackMetadata {
 
   /// This is the number of the customer who made the payment.
   String? phoneNumber;
+
+  Map<String, dynamic> asMap() => {
+        'amount': amount,
+        'mpesaReceiptNumber': mpesaReceiptNumber,
+        'balance': balance,
+        'transactionDate': transactionDate?.toIso8601String(),
+        'phoneNumber': phoneNumber,
+      };
 }
 
 // ****C2B Validation****
@@ -113,6 +121,22 @@ class C2BValidation {
   String? firstName;
   String? middleName;
   String? lastName;
+
+  Map<String, dynamic> asMap() => {
+        'transactionType': transactionType,
+        'transID': transID,
+        'transTime': transTime,
+        'transAmount': transAmount,
+        'businessShortCode': businessShortCode,
+        'billRefNumber': billRefNumber,
+        'invoiceNumber': invoiceNumber,
+        'orgAccountBalance': orgAccountBalance,
+        'thirdPartyTransID': thirdPartyTransID,
+        'mSISDN': mSISDN,
+        'firstName': firstName,
+        'middleName': middleName,
+        'lastName': lastName,
+      };
 }
 
 // ****B2C****
@@ -134,6 +158,13 @@ class B2CCallBackResponse extends CommonCallBackResponse {
   ResultParameters? resultParameter;
 
   ReferenceData? referenceData;
+
+  @override
+  Map<String, dynamic> asMap() => {
+        ...super.asMap(),
+        'resultParameter': resultParameter?.asMap(),
+        'referenceData': referenceData?.asMap(),
+      };
 }
 
 // ****Reversal****
@@ -155,6 +186,13 @@ class ReversalCallBackResponse extends CommonCallBackResponse {
   ReversalResultParameters? resultParameter;
 
   ReferenceData? referenceData;
+
+  @override
+  Map<String, dynamic> asMap() => {
+        ...super.asMap(),
+        'resultParameter': resultParameter?.asMap(),
+        'referenceData': referenceData?.asMap(),
+      };
 }
 
 // ****Transaction status****
@@ -177,6 +215,13 @@ class TransactionStatusCallBackResponse extends CommonCallBackResponse {
   TransactionStatusResultParameters? resultParameter;
 
   ReferenceData? referenceData;
+
+  @override
+  Map<String, dynamic> asMap() => {
+        ...super.asMap(),
+        'resultParameter': resultParameter?.asMap(),
+        'referenceData': referenceData?.asMap(),
+      };
 }
 
 class CommonCallBackResponse {
@@ -209,6 +254,15 @@ class CommonCallBackResponse {
 
   /// For every unique request made to M-PESA, a new ConversationID is generated and returned in the response. This ConversationID carries the response from M-PESA.
   String? conversationID;
+
+  Map<String, dynamic> asMap() => {
+        'resultType': resultType,
+        'resultCode': resultCode,
+        'resultDesc': resultDesc,
+        'originatorConversationID': originatorConversationID,
+        'transactionID': transactionID,
+        'conversationID': conversationID,
+      };
 }
 
 class ResultParameters {
@@ -276,6 +330,19 @@ class ResultParameters {
 
   /// This is the name and phone number of the customer who received the payment.
   String? receiverPartyPublicName;
+
+  Map<String, dynamic> asMap() => {
+        'transactionReceipt': transactionReceipt,
+        'transactionAmount': transactionAmount,
+        'b2CWorkingAccountAvailableFunds': b2CWorkingAccountAvailableFunds,
+        'b2CUtilityAccountAvailableFunds': b2CUtilityAccountAvailableFunds,
+        'b2CChargesPaidAccountAvailableFunds':
+            b2CChargesPaidAccountAvailableFunds,
+        'b2CRecipientIsRegisteredCustomer': b2CRecipientIsRegisteredCustomer,
+        'transactionCompletedDateTime':
+            transactionCompletedDateTime?.toIso8601String(),
+        'receiverPartyPublicName': receiverPartyPublicName,
+      };
 }
 
 class ReversalResultParameters {
@@ -326,6 +393,16 @@ class ReversalResultParameters {
   String? creditPartyPublicName;
 
   String? debitPartyPublicName;
+
+  Map<String, dynamic> asMap() => {
+        'debitAccountBalance': debitAccountBalance,
+        'amount': amount,
+        'transCompletedTime': transCompletedTime?.toIso8601String(),
+        'originalTransactionID': originalTransactionID,
+        'charge': charge,
+        'creditPartyPublicName': creditPartyPublicName,
+        'debitPartyPublicName': debitPartyPublicName,
+      };
 }
 
 class TransactionStatusResultParameters {
@@ -406,6 +483,22 @@ class TransactionStatusResultParameters {
   String? debitAccountType;
 
   String? originatorConversationID;
+
+  Map<String, dynamic> asMap() => {
+        'debitPartyCharges': debitPartyCharges,
+        'amount': amount,
+        'initiatedTime': initiatedTime?.toIso8601String(),
+        'finalisedTime': finalisedTime?.toIso8601String(),
+        'conversationID': conversationID,
+        'receiptNo': receiptNo,
+        'creditPartyPublicName': creditPartyPublicName,
+        'debitPartyPublicName': debitPartyPublicName,
+        'transactionStatus': transactionStatus,
+        'reasonType': reasonType,
+        'transactionReason': transactionReason,
+        'debitAccountType': debitAccountType,
+        'originatorConversationID': originatorConversationID,
+      };
 }
 
 class ReferenceData {
@@ -415,6 +508,7 @@ class ReferenceData {
   Map<String, dynamic> rawResponse = {};
 
   String? referenceItem;
+  Map<String, dynamic> asMap() => {'referenceItem': referenceItem};
 }
 
 DateTime _dateParser(String val) {
