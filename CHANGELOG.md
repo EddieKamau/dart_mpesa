@@ -1,3 +1,7 @@
+## 2.0.3
+
+- Exception handling in MpesaStkCallBackResponse
+
 ## 2.0.2
 
 - Map<String, dynamic> representation of call back responses

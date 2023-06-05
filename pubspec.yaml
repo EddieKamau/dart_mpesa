@@ -1,6 +1,6 @@
 name: dart_mpesa
 description: This library contains methods that make it easy to consume Mpesa Api.
-version: 2.0.2
+version: 2.0.3
 homepage: https://github.com/EddieKamau/dart_mpesa
 environment:
   sdk: '>=3.0.0 <4.0.0'
