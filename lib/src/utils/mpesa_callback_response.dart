@@ -5,7 +5,8 @@ class MpesaStkCallBackResponse {
         rawResponse['Body']?['stkCallback']?['MerchantRequestID'];
     checkoutRequestID =
         rawResponse['Body']?['stkCallback']?['CheckoutRequestID'];
-    responseCode = int.tryParse((rawResponse['Body']?['stkCallback']?['ResultCode']).toString());
+    responseCode = int.tryParse(
+        (rawResponse['Body']?['stkCallback']?['ResultCode']).toString());
     // if success
     if (responseCode == 0 &&
         rawResponse['Body']?['stkCallback']?['CallbackMetadata'] != null) {
@@ -226,8 +227,10 @@ class TransactionStatusCallBackResponse extends CommonCallBackResponse {
 
 class CommonCallBackResponse {
   CommonCallBackResponse(this.rawResponse) {
-    resultType = int.tryParse((rawResponse['Result']?['ResultType']).toString()) ?? 3;
-    resultCode = int.tryParse((rawResponse['Result']?['ResultCode']).toString()) ?? 3;
+    resultType =
+        int.tryParse((rawResponse['Result']?['ResultType']).toString()) ?? 3;
+    resultCode =
+        int.tryParse((rawResponse['Result']?['ResultCode']).toString()) ?? 3;
     resultDesc = rawResponse['Result']?['ResultDesc'];
     originatorConversationID =
         rawResponse['Result']?['OriginatorConversationID'];
